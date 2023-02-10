@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import reminder.domain.Reminder
+import reminder.domain.ReminderIdentifier
 import reminder.domain.ReminderIdentifierGenerator
 import reminder.domain.ReminderRepository
+import reminder.mothers.IdentifierMother
 import reminder.mothers.ReminderMother
 import java.util.*
 import kotlin.test.assertEquals
@@ -26,29 +28,21 @@ class ReminderSearcherTest {
 
     @Test
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
-        val reminder = ReminderMother.getValidReminderWithoutDescription()
-        `Assert that the reminder was not found in the repository given the identifier from`(reminder)
+        val identifier = IdentifierMother.getValidIdentifier()
+        `Assert that the reminder was not found in the repository given the identifier`(identifier)
     }
 
     @Test
     fun `Reminder is returned when identifier exists in the repository`() {
         val reminder = ReminderMother.getValidReminderWithoutDescription()
-        `Save reminder to repository given the primitives from`(reminder)
         `Assert that the reminder was found in the repository given the identifier from`(reminder)
     }
 
-    private fun `Assert that the reminder was not found in the repository given the identifier from`(reminder: Reminder) {
-        Mockito.`when`(repository.search(reminder.id)).thenReturn(Optional.empty())
-        val result = reminderSearcher.search(reminder.id)
-        Mockito.verify(repository, Mockito.times(1)).search(reminder.id)
+    private fun `Assert that the reminder was not found in the repository given the identifier`(identifier: ReminderIdentifier) {
+        Mockito.`when`(repository.search(identifier)).thenReturn(Optional.empty())
+        val result = reminderSearcher.search(identifier)
+        Mockito.verify(repository, Mockito.times(1)).search(identifier)
         assertEquals(Optional.empty<Reminder>(), result)
-    }
-
-    private fun `Save reminder to repository given the primitives from`(reminder: Reminder) {
-        val title = ReminderMother.getTitlePrimitiveFrom(reminder)
-        val description = ReminderMother.getDescriptionPrimitiveFrom(reminder)
-        Mockito.`when`(generator.generate()).thenReturn(reminder.id)
-        reminderSaver.save(title, description)
     }
 
     private fun `Assert that the reminder was found in the repository given the identifier from`(reminder: Reminder) {
