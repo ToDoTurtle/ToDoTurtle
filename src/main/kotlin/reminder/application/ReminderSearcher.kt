@@ -12,8 +12,6 @@ class ReminderSearcher(
      * @see Reminder
      * @return An optional of a reminder instance.
      */
-    fun search(identifier: ReminderIdentifier): Optional<Reminder> {
-        return repository.search(identifier)
-    }
+    fun search(identifier: ReminderIdentifier) = repository.search(identifier)
 
 }
