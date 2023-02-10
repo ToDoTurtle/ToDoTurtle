@@ -1,14 +1,14 @@
 package reminder.application
 
-import reminder.mothers.ReminderMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import reminder.domain.Reminder
 import reminder.domain.ReminderIdentifierGenerator
 import reminder.domain.ReminderRepository
-import reminder.domain.Reminder
 import reminder.domain.exceptions.IllegalTitleException
+import reminder.mothers.ReminderMother
 import java.util.*
 import kotlin.test.assertEquals
 
