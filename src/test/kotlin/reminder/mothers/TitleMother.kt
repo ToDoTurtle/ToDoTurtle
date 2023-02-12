@@ -5,8 +5,8 @@ import reminder.domain.Title
 class TitleMother {
 
     companion object {
-        private fun getValidTitlePrimitive(): String = "I should buy some milk, because if I don't I can't do coffee"
-        fun getValidTitle(): Title = Title(getValidTitlePrimitive())
+        private const val PRIMITIVE_TITLE = "Buy Milk"
+        fun getValidTitle() = Title(PRIMITIVE_TITLE)
         fun getPrimitiveFrom(title: Title) = title.title
     }
 
