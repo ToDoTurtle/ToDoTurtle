@@ -2,15 +2,19 @@ package reminder.application
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import reminder.domain.ReminderIdentifierGenerator
 import reminder.domain.ReminderRepository
+import reminder.domain.exceptions.NonExistentReminderException
 import reminder.mothers.IdentifierMother
-import kotlin.test.assertEquals
+import reminder.mothers.ReminderMother
+import java.util.*
 
 class ReminderDeleterTest {
-    private lateinit var generator: ReminderIdentifierGenerator
     private lateinit var reminderDeleter: ReminderDeleter
+    private lateinit var generator: ReminderIdentifierGenerator
     private lateinit var repository: ReminderRepository
 
     @BeforeEach
@@ -21,26 +25,28 @@ class ReminderDeleterTest {
     }
 
     @Test
-    fun `False is returned when called with non existent identifier`() {
+    fun `Invalid identifier throws NonExistentReminderException`() {
         // Initialize
         val identifier = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.delete(identifier)).thenReturn(false)
-        // Execute
-        val result = reminderDeleter.delete(identifier)
-        // Assert
-        Mockito.verify(repository, Mockito.times(1)).delete(identifier)
-        assertEquals(false, result)
+        Mockito.`when`(repository.search(identifier)).thenReturn(Optional.empty())
+        // Execute and Assert
+        assertThrows<NonExistentReminderException> {
+            reminderDeleter.delete(identifier)
+        }
+        // Assert number of calls
+        Mockito.verify(repository, Mockito.times(0)).delete(identifier)
     }
 
     @Test
-    fun `True is returned when called with existent identifier`() {
+    fun `Nothing is returned when called with existent identifier`() {
         // Initialize
-        val identifier = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.delete(identifier)).thenReturn(true)
-        // Execute
-        val result = reminderDeleter.delete(identifier)
-        // Assert
-        Mockito.verify(repository, Mockito.times(1)).delete(identifier)
-        assertEquals(true, result)
+        val reminder = ReminderMother.getValidReminderWithoutDescription()
+        Mockito.`when`(repository.search(reminder.id)).thenReturn(Optional.of(reminder))
+        // Execute and Assert
+        assertDoesNotThrow {
+            reminderDeleter.delete(reminder.id)
+        }
+        // Assert number of calls
+        Mockito.verify(repository, Mockito.times(1)).delete(reminder.id)
     }
 }
