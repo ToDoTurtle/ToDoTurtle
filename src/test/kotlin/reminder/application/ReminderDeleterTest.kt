@@ -38,7 +38,7 @@ class ReminderDeleterTest {
     }
 
     @Test
-    fun `Nothing is returned when called with existent identifier`() {
+    fun `Existing reminder gets deleted from the repository`() {
         // Initialize
         val reminder = ReminderMother.getValidReminderWithoutDescription()
         Mockito.`when`(repository.search(reminder.id)).thenReturn(Optional.of(reminder))
