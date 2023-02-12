@@ -1,7 +1,6 @@
 package reminder.application
 
 import reminder.domain.*
-import java.util.*
 
 class ReminderSaver(
     private val repository: ReminderRepository,
@@ -15,11 +14,11 @@ class ReminderSaver(
      * @see ReminderIdentifierGenerator
      * @return The saved reminder instance
      */
-    fun save(title: String, description: Optional<String>): Reminder {
+    fun save(title: String, description: String?): Reminder {
         val reminder = Reminder(
             id = identifierGenerator.generate(),
             title = Title(title),
-            description = description.map { Description(it) })
+            description = description?.let { Description(it) })
         repository.save(reminder)
         return reminder
     }
