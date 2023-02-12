@@ -9,7 +9,6 @@ import reminder.domain.ReminderIdentifierGenerator
 import reminder.domain.ReminderRepository
 import reminder.domain.exceptions.IllegalTitleException
 import reminder.mothers.ReminderMother
-import java.util.*
 import kotlin.test.assertEquals
 
 class ReminderSaverTest {
@@ -28,7 +27,7 @@ class ReminderSaverTest {
     @Test
     fun `Empty title throws IllegalTitleException`() {
         assertThrows<IllegalTitleException> {
-            reminderSaver.save("", Optional.empty())
+            reminderSaver.save("", null)
         }
     }
 

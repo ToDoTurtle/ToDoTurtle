@@ -1,7 +1,8 @@
 package reminder.application
 
-import reminder.domain.*
-import java.util.*
+import reminder.domain.Reminder
+import reminder.domain.ReminderIdentifier
+import reminder.domain.ReminderRepository
 
 class ReminderSearcher(
     private val repository: ReminderRepository,
@@ -10,7 +11,7 @@ class ReminderSearcher(
     /***
      * Searches a Reminder with the given identifier and returns it if found.
      * @see Reminder
-     * @return An optional of a reminder instance.
+     * @return null or a reminder instance if it exists
      */
     fun search(identifier: ReminderIdentifier) = repository.search(identifier)
 

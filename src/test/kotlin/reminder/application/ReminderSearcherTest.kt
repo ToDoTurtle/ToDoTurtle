@@ -3,12 +3,10 @@ package reminder.application
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
-import reminder.domain.Reminder
 import reminder.domain.ReminderIdentifierGenerator
 import reminder.domain.ReminderRepository
 import reminder.mothers.IdentifierMother
 import reminder.mothers.ReminderMother
-import java.util.*
 import kotlin.test.assertEquals
 
 class ReminderSearcherTest {
@@ -27,23 +25,23 @@ class ReminderSearcherTest {
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
         // Initialize
         val identifier = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.search(identifier)).thenReturn(Optional.empty())
+        Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute
         val result = reminderSearcher.search(identifier)
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(identifier)
-        assertEquals(Optional.empty<Reminder>(), result)
+        assertEquals(null, result)
     }
 
     @Test
     fun `Reminder is returned when identifier exists in the repository`() {
         // Initialize
         val reminder = ReminderMother.getValidReminderWithoutDescription()
-        Mockito.`when`(repository.search(reminder.id)).thenReturn(Optional.of(reminder))
+        Mockito.`when`(repository.search(reminder.id)).thenReturn(reminder)
         // Execute
         val result = reminderSearcher.search(reminder.id)
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(reminder.id)
-        assertEquals(Optional.of(reminder), result)
+        assertEquals(reminder, result)
     }
 }
