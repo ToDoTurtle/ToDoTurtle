@@ -44,4 +44,5 @@ class NoteSearcherTest {
         Mockito.verify(repository, Mockito.times(1)).search(note.id)
         assertEquals(note, result)
     }
+
 }
