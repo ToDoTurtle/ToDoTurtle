@@ -10,7 +10,6 @@ import reminder.domain.ReminderRepository
 import reminder.domain.exceptions.NonExistentReminderException
 import reminder.mothers.IdentifierMother
 import reminder.mothers.ReminderMother
-import java.util.*
 
 class ReminderDeleterTest {
     private lateinit var reminderDeleter: ReminderDeleter
@@ -28,7 +27,7 @@ class ReminderDeleterTest {
     fun `Invalid identifier throws NonExistentReminderException`() {
         // Initialize
         val identifier = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.search(identifier)).thenReturn(Optional.empty())
+        Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute and Assert
         assertThrows<NonExistentReminderException> {
             reminderDeleter.delete(identifier)
@@ -41,7 +40,7 @@ class ReminderDeleterTest {
     fun `Existing reminder gets deleted from the repository`() {
         // Initialize
         val reminder = ReminderMother.getValidReminderWithoutDescription()
-        Mockito.`when`(repository.search(reminder.id)).thenReturn(Optional.of(reminder))
+        Mockito.`when`(repository.search(reminder.id)).thenReturn(reminder)
         // Execute and Assert
         assertDoesNotThrow {
             reminderDeleter.delete(reminder.id)

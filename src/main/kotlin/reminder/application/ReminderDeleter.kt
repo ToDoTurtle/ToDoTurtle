@@ -15,8 +15,7 @@ class ReminderDeleter(
      * @return A boolean indicating if the reminder was deleted correctly.
      * @throws NonExistentReminderException if the reminder does not exist or is not saved on the repository.
      */
-    fun delete(identifier: ReminderIdentifier) {
-        val found = ReminderSearcher(repository).search(identifier)  // TODO: Replace with elvis operator if we switch tu nullables
-        if (found.isPresent) repository.delete(identifier) else throw NonExistentReminderException(identifier)
-    }
+    fun delete(identifier: ReminderIdentifier) =
+        ReminderSearcher(repository).search(identifier)?.let { repository.delete(it.id) }
+            ?: throw NonExistentReminderException(identifier)
 }
