@@ -1,6 +1,6 @@
-package reminder.domain
+package note.domain
 
-import reminder.domain.exceptions.IllegalTitleException
+import note.domain.exceptions.IllegalTitleException
 
 data class Title(val title: String) {
 
