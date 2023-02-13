@@ -1,6 +1,6 @@
-package reminder.mothers
+package note.mothers
 
-import reminder.domain.Title
+import note.domain.Title
 
 class TitleMother {
 

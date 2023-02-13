@@ -1,6 +1,6 @@
-package reminder.mothers
+package note.mothers
 
-import reminder.domain.Description
+import note.domain.Description
 
 class DescriptionMother {
 
