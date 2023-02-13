@@ -12,7 +12,7 @@ class ReminderDeleter(
     /***
      * Deletes a Reminder with the given identifier and returns true if found.
      * @see Reminder
-     * @return A boolean indicating if the reminder was deleted correctly.
+     * @return Unit if the reminder was deleted or throws an exception if it does not exist.
      * @throws NonExistentReminderException if the reminder does not exist or is not saved on the repository.
      */
     fun delete(identifier: ReminderIdentifier) =
