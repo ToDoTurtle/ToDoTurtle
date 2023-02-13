@@ -1,6 +1,10 @@
 package note.application
 
-import note.domain.*
+import note.domain.Note
+import note.domain.NoteIdentifierGenerator
+import note.domain.NoteRepository
+import note.domain.Title
+import note.domain.Description
 
 class NoteSaver(
     private val repository: NoteRepository,

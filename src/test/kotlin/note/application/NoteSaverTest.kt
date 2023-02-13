@@ -55,5 +55,4 @@ class NoteSaverTest {
         assertEquals(note, result)
     }
 
-
 }
