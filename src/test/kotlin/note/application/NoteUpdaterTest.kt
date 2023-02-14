@@ -60,6 +60,6 @@ class NoteUpdaterTest {
     ) {
         Mockito.verify(repository, Mockito.times(deleteCalls)).delete(identifier)
         Mockito.verify(repository, Mockito.times(saveCalls))
-            .save(note)
+            .save(NoteMother.getValidNoteFrom(newTitle, newDescription))
     }
 }
