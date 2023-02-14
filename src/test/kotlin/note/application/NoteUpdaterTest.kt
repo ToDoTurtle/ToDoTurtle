@@ -3,6 +3,7 @@ package note.application
 import note.domain.*
 import note.domain.exceptions.NonExistentNoteException
 import note.mothers.IdentifierMother
+import note.mothers.NoteMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -16,6 +17,7 @@ class NoteUpdaterTest {
     private val newTitle = "title"
     private val newDescription = "description"
     private val identifier = IdentifierMother.getValidIdentifier()
+    private val note = NoteMother.getValidNoteWithDescription()
 
     @BeforeEach
     fun setUp() {
@@ -36,30 +38,28 @@ class NoteUpdaterTest {
         }
 
         // Assert number of calls
-        assertNumberOfCalls(1, 0, 0)
+        assertNumberOfCalls(0, 0)
     }
 
     @Test
     fun `Existing note gets deleted and saved`() {
         // Initialize
-        Mockito.`when`(repository.search(identifier)).thenReturn(Note(identifier, Title("title"), Description("description")))
+        Mockito.`when`(repository.search(identifier)).thenReturn(note)
         Mockito.`when`(generator.generate()).thenReturn(identifier)
 
         // Execute and Assert
         noteUpdater.update(identifier, newTitle, newDescription)
 
         // Assert number of calls
-        assertNumberOfCalls(1, 1, 1)
+        assertNumberOfCalls( 1, 1)
     }
 
     private fun assertNumberOfCalls(
-        searchCalls: Int,
         deleteCalls: Int,
         saveCalls: Int,
     ) {
-        Mockito.verify(repository, Mockito.times(searchCalls)).search(identifier)
         Mockito.verify(repository, Mockito.times(deleteCalls)).delete(identifier)
         Mockito.verify(repository, Mockito.times(saveCalls))
-            .save(Note(identifier, Title(newTitle), Description(newDescription)))
+            .save(note)
     }
 }
