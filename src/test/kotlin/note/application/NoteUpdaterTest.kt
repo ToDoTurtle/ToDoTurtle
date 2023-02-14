@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 
-class ReminderUpdaterTest {
-    private lateinit var reminderUpdater: ReminderUpdater
+class NoteUpdaterTest {
+    private lateinit var noteUpdater: NoteUpdater
     private lateinit var generator: NoteIdentifierGenerator
     private lateinit var repository: NoteRepository
 
@@ -21,7 +21,7 @@ class ReminderUpdaterTest {
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
         generator = Mockito.mock(NoteIdentifierGenerator::class.java)
-        reminderUpdater = ReminderUpdater(repository, generator)
+        noteUpdater = NoteUpdater(repository, generator)
     }
 
     @Test
@@ -32,7 +32,7 @@ class ReminderUpdaterTest {
 
         // Execute and Assert
         assertThrows<NonExistentNoteException> {
-            reminderUpdater.update(identifier, newTitle, newDescription)
+            noteUpdater.update(identifier, newTitle, newDescription)
         }
 
         // Assert number of calls
@@ -46,7 +46,7 @@ class ReminderUpdaterTest {
         Mockito.`when`(generator.generate()).thenReturn(identifier)
 
         // Execute and Assert
-        reminderUpdater.update(identifier, newTitle, newDescription)
+        noteUpdater.update(identifier, newTitle, newDescription)
 
         // Assert number of calls
         assertNumberOfCalls(1, 1, 1)

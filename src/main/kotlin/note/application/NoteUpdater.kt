@@ -5,7 +5,7 @@ import note.domain.NoteIdentifier
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 
-class ReminderUpdater(
+class NoteUpdater(
     private val repository: NoteRepository,
     private val identifierGenerator: NoteIdentifierGenerator,
 ) {
