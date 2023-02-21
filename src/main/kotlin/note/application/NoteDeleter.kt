@@ -1,7 +1,7 @@
 package note.application
 
-import note.domain.NoteIdentifier
 import note.domain.Note
+import note.domain.NoteIdentifier
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 

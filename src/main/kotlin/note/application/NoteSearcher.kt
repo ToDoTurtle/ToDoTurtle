@@ -14,5 +14,4 @@ class NoteSearcher(
      * @return null or a note instance if it exists
      */
     fun search(identifier: NoteIdentifier) = repository.search(identifier)
-
 }

@@ -1,3 +1,3 @@
 package note.domain.exceptions
 
-class IllegalTitleException: Exception()
+class IllegalTitleException : Exception()

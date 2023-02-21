@@ -1,15 +1,15 @@
 package note.application
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
-import org.mockito.Mockito
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
+import org.mockito.Mockito
 
 class NoteDeleterTest {
     private lateinit var noteDeleter: NoteDeleter
