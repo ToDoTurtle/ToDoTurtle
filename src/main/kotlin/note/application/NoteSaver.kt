@@ -1,10 +1,10 @@
 package note.application
 
+import note.domain.Description
 import note.domain.Note
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.Title
-import note.domain.Description
 
 class NoteSaver(
     private val repository: NoteRepository,
@@ -22,9 +22,9 @@ class NoteSaver(
         val note = Note(
             id = identifierGenerator.generate(),
             title = Title(title),
-            description = description?.let { Description(it) })
+            description = description?.let { Description(it) },
+        )
         repository.save(note)
         return note
     }
-
 }

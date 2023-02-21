@@ -1,12 +1,12 @@
 package note.application
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.mockito.Mockito
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.mockito.Mockito
 import kotlin.test.assertEquals
 
 class NoteSearcherTest {
@@ -44,5 +44,4 @@ class NoteSearcherTest {
         Mockito.verify(repository, Mockito.times(1)).search(note.id)
         assertEquals(note, result)
     }
-
 }

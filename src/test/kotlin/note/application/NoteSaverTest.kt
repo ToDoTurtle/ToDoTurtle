@@ -1,14 +1,14 @@
 package note.application
 
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
-import org.mockito.Mockito
 import note.domain.Note
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.IllegalTitleException
 import note.mothers.NoteMother
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.mockito.Mockito
 import kotlin.test.assertEquals
 
 class NoteSaverTest {
@@ -54,5 +54,4 @@ class NoteSaverTest {
         Mockito.verify(repository, Mockito.times(1)).save(note)
         assertEquals(note, result)
     }
-
 }
