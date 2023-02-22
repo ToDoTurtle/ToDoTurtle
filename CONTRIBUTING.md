@@ -13,6 +13,7 @@ standards, and that each file gets linted properly. For installing the tools you
 
 ```shell
 curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.48.2/ktlint && chmod a+x ktlint && sudo mv ktlint /usr/local/bin/
+mkdir -p .git/hooks
 cp .github/hooks/pre-commit .git/hooks/pre-commit
 ```
 
