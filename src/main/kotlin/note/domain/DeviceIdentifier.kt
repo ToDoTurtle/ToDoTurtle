@@ -1,4 +1,20 @@
 package note.domain
 
+import note.domain.exceptions.InvalidUUIDException
+import java.util.UUID
+
 @Suppress("UnusedPrivateMember")
-class DeviceIdentifier(private val id: String)
+data class DeviceIdentifier(val id: String) {
+    companion object {
+        private const val WANTED_VERSION = 4
+    }
+    init {
+        try {
+            val uuid = UUID.fromString(id)
+            if (uuid.version() != WANTED_VERSION) throw InvalidUUIDException(id)
+        } catch (ex: IllegalArgumentException) {
+            throw InvalidUUIDException(id)
+            throw ex
+        }
+    }
+}
