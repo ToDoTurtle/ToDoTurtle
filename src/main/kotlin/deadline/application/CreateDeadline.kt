@@ -14,11 +14,8 @@ class CreateDeadline(private val repository: DeadlineRepository) {
      * @throws AlreadyConfiguredDeadline if a new deadline already exists
      * @return The deadline instance that was saved inside the repository
      */
-    fun create(noteIdentifier: NoteIdentifier, time: Time): Deadline {
-        if (repository.get(noteIdentifier) != null) {
-            throw AlreadyConfiguredDeadline()
-        }
-        val deadline = Deadline(noteIdentifier, time)
+    fun create(id: NoteIdentifier, time: Time): Deadline {
+        val deadline = repository.get(id)?.let { throw AlreadyConfiguredDeadline() } ?: Deadline(id, time)
         repository.save(deadline)
         return deadline
     }
