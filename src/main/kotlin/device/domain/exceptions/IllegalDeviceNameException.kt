@@ -1,3 +1,3 @@
-package note.domain.exceptions
+package device.domain.exceptions
 
 class IllegalDeviceNameException : Exception()

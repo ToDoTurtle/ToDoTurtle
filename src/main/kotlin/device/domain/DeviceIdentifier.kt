@@ -1,6 +1,6 @@
-package note.domain
+package device.domain
 
-import note.domain.exceptions.InvalidUUIDException
+import device.domain.exceptions.InvalidUUIDException
 import java.util.UUID
 
 @Suppress("UnusedPrivateMember")

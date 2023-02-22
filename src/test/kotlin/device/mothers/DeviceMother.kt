@@ -1,6 +1,6 @@
 package device.mothers
 
-import note.domain.Device
+import device.domain.Device
 
 object DeviceMother {
     fun getValidDevice() = Device(

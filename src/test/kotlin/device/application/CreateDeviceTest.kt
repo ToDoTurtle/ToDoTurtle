@@ -1,12 +1,11 @@
 package device.application
 
+import device.domain.DeviceIdentifier
+import device.domain.DeviceRepository
+import device.domain.exceptions.AlreadyExistingDevice
+import device.domain.exceptions.InvalidUUIDException
 import device.mothers.DeviceIdentifierMother
 import device.mothers.DeviceMother
-import note.application.CreateDevice
-import note.domain.DeviceIdentifier
-import note.domain.DeviceRepository
-import note.domain.exceptions.AlreadyExistingDevice
-import note.domain.exceptions.InvalidUUIDException
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

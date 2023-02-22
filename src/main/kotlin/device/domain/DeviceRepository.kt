@@ -1,4 +1,4 @@
-package note.domain
+package device.domain
 
 interface DeviceRepository {
     fun save(device: Device)

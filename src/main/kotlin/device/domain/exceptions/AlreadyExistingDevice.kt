@@ -1,6 +1,6 @@
-package note.domain.exceptions
+package device.domain.exceptions
 
-import note.domain.DeviceIdentifier
+import device.domain.DeviceIdentifier
 
 class AlreadyExistingDevice(identifier: DeviceIdentifier) : Exception() {
     override val message: String = "Device with identifier $identifier already exists."

@@ -1,6 +1,6 @@
-package note.domain
+package device.domain
 
-import note.domain.exceptions.IllegalDeviceNameException
+import device.domain.exceptions.IllegalDeviceNameException
 
 data class DeviceName(val name: String) {
 
