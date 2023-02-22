@@ -6,7 +6,7 @@ import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.domain.exceptions.UnchangedNoteException
 import note.mothers.DescriptionMother
-import note.mothers.IdentifierMother
+import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
 import note.mothers.TitleMother
 import org.junit.jupiter.api.BeforeEach
@@ -19,7 +19,7 @@ class NoteUpdaterTest {
     private lateinit var generator: NoteIdentifierGenerator
     private lateinit var repository: NoteRepository
 
-    private val identifier = IdentifierMother.getValidIdentifier()
+    private val identifier = NoteIdentifierMother.getValidIdentifier()
     private val originalNote = NoteMother.getValidNoteWithDescription()
     private val toBeSavedNote = NoteMother.getAlternativeNoteWithDescription()
 

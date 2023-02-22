@@ -4,31 +4,31 @@ import note.domain.Note
 
 object NoteMother {
     fun getValidNoteWithDescription() = Note(
-        id = IdentifierMother.getValidIdentifier(),
+        id = NoteIdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
         description = DescriptionMother.getValidDescription(),
     )
 
     fun getValidNoteWithoutDescription() = Note(
-        id = IdentifierMother.getValidIdentifier(),
+        id = NoteIdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
         description = null,
     )
 
     fun getAlternativeNoteWithDescription() = Note(
-        id = IdentifierMother.getValidIdentifier(),
+        id = NoteIdentifierMother.getValidIdentifier(),
         title = TitleMother.getAlternativeTitle(),
         description = DescriptionMother.getAlternativeDescription(),
     )
 
     fun getNoteWithOriginalTitleAndChangedDescription() = Note(
-        id = IdentifierMother.getValidIdentifier(),
+        id = NoteIdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
         description = DescriptionMother.getAlternativeDescription(),
     )
 
     fun getNoteWithChangedTitleAndOriginalDescription() = Note(
-        id = IdentifierMother.getValidIdentifier(),
+        id = NoteIdentifierMother.getValidIdentifier(),
         title = TitleMother.getAlternativeTitle(),
         description = DescriptionMother.getValidDescription(),
     )
