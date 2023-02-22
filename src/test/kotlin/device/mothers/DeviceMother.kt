@@ -7,6 +7,6 @@ object DeviceMother {
         id = DeviceIdentifierMother.getValidIdentifier(),
         name = DeviceNameMother.getValidDeviceName(),
     )
-
-    fun getNamePrimitiveFrom(device: Device) = DeviceNameMother.getPrimitiveFrom(device.name)
+    fun getIdPrimitiveFrom(device: Device) = device.id.id
+    fun getNamePrimitiveFrom(device: Device) = device.name.name
 }
