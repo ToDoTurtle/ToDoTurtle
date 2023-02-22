@@ -1,20 +1,23 @@
 package notification.application
 
-import note.mothers.IdentifierMother
+import notification.domain.NotificationRepository
+import notification.mothers.NotificationMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
+import shared.domain.IdentifierGenerator
+import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
 class NotificationGetterTest {
     private lateinit var notificationGetter: NotificationGetter
-    private lateinit var generator: NotificationIdentifierGenerator
+    private lateinit var generator: IdentifierGenerator
     private lateinit var repository: NotificationRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NotificationRepository::class.java)
-        generator = Mockito.mock(NotificationIdentifierGenerator::class.java)
+        generator = Mockito.mock(IdentifierGenerator::class.java)
         notificationGetter = NotificationGetter(repository)
     }
 
@@ -23,7 +26,7 @@ class NotificationGetterTest {
         val identifier = IdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.get(identifier)).thenReturn(null)
 
-        val result = notificationGetter.get(identifier)
+        val result = notificationGetter.get(IdentifierMother.getPrimitiveFrom(identifier))
 
         Mockito.verify(repository, Mockito.times(1)).get(identifier)
         assertEquals(null, result)
@@ -34,8 +37,9 @@ class NotificationGetterTest {
         val notification = NotificationMother.getValidNotification()
         Mockito.`when`(repository.get(notification.id)).thenReturn(notification)
 
-        val result = notificationGetter.get(notification.id)
+        val result = notificationGetter.get(NotificationMother.getIdentifierPrimitiveFrom(notification))
 
         Mockito.verify(repository, Mockito.times(1)).get(notification.id)
         assertEquals(notification, result)
     }
+}

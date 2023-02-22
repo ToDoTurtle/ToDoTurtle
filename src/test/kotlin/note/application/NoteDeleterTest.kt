@@ -8,7 +8,7 @@ import org.mockito.Mockito
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
-import note.mothers.IdentifierMother
+import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
 
 class NoteDeleterTest {
@@ -26,7 +26,7 @@ class NoteDeleterTest {
     @Test
     fun `Invalid identifier throws NonExistentNoteException`() {
         // Initialize
-        val identifier = IdentifierMother.getValidIdentifier()
+        val identifier = NoteIdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute and Assert
         assertThrows<NonExistentNoteException> {

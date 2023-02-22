@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
-import note.mothers.IdentifierMother
+import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
 import kotlin.test.assertEquals
 
@@ -24,7 +24,7 @@ class NoteSearcherTest {
     @Test
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
         // Initialize
-        val identifier = IdentifierMother.getValidIdentifier()
+        val identifier = NoteIdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute
         val result = noteSearcher.search(identifier)
