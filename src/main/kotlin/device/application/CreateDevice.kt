@@ -26,7 +26,7 @@ class CreateDevice(private val repository: DeviceRepository) {
      * @return The device instance that was saved inside the repository
      */
 
-    fun create(id: DeviceIdentifier, name: DeviceName): Device {
+    internal fun create(id: DeviceIdentifier, name: DeviceName): Device {
         val device = repository.get(id)?.let { throw AlreadyExistingDevice(id) } ?: Device(id, name)
         repository.save(device)
         return device
