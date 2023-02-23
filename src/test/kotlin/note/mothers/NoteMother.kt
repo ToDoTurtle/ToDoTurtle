@@ -6,13 +6,31 @@ object NoteMother {
     fun getValidNoteWithDescription() = Note(
         id = IdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
-        description = DescriptionMother.getValidDescription()
+        description = DescriptionMother.getValidDescription(),
     )
 
     fun getValidNoteWithoutDescription() = Note(
         id = IdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
-        description = null
+        description = null,
+    )
+
+    fun getAlternativeNoteWithDescription() = Note(
+        id = IdentifierMother.getValidIdentifier(),
+        title = TitleMother.getAlternativeTitle(),
+        description = DescriptionMother.getAlternativeDescription(),
+    )
+
+    fun getNoteWithOriginalTitleAndChangedDescription() = Note(
+        id = IdentifierMother.getValidIdentifier(),
+        title = TitleMother.getValidTitle(),
+        description = DescriptionMother.getAlternativeDescription(),
+    )
+
+    fun getNoteWithChangedTitleAndOriginalDescription() = Note(
+        id = IdentifierMother.getValidIdentifier(),
+        title = TitleMother.getAlternativeTitle(),
+        description = DescriptionMother.getValidDescription(),
     )
 
     fun getTitlePrimitiveFrom(note: Note) = TitleMother.getPrimitiveFrom(note.title)
