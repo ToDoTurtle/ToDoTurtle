@@ -1,5 +1,33 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:device.application////PointingToDeclaration/-to-do-turtle/device.application/index.html
+$dokka.location:device.application/CreateDevice///PointingToDeclaration/-to-do-turtle/device.application/-create-device/index.html
+$dokka.location:device.application/CreateDevice/CreateDevice/#device.domain.DeviceRepository/PointingToDeclaration/-to-do-turtle/device.application/-create-device/-create-device.html
+$dokka.location:device.application/CreateDevice/create/#kotlin.String#kotlin.String/PointingToDeclaration/-to-do-turtle/device.application/-create-device/create.html
+$dokka.location:device.domain.exceptions////PointingToDeclaration/-to-do-turtle/device.domain.exceptions/index.html
+$dokka.location:device.domain.exceptions/AlreadyExistingDevice///PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-already-existing-device/index.html
+$dokka.location:device.domain.exceptions/AlreadyExistingDevice/AlreadyExistingDevice/#device.domain.DeviceIdentifier/PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-already-existing-device/-already-existing-device.html
+$dokka.location:device.domain.exceptions/AlreadyExistingDevice/message/#/PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-already-existing-device/message.html
+$dokka.location:device.domain.exceptions/IllegalDeviceNameException///PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-illegal-device-name-exception/index.html
+$dokka.location:device.domain.exceptions/IllegalDeviceNameException/IllegalDeviceNameException/#/PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-illegal-device-name-exception/-illegal-device-name-exception.html
+$dokka.location:device.domain.exceptions/InvalidUUIDException///PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-invalid-u-u-i-d-exception/index.html
+$dokka.location:device.domain.exceptions/InvalidUUIDException/InvalidUUIDException/#kotlin.String/PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-invalid-u-u-i-d-exception/-invalid-u-u-i-d-exception.html
+$dokka.location:device.domain.exceptions/InvalidUUIDException/message/#/PointingToDeclaration/-to-do-turtle/device.domain.exceptions/-invalid-u-u-i-d-exception/message.html
+$dokka.location:device.domain////PointingToDeclaration/-to-do-turtle/device.domain/index.html
+$dokka.location:device.domain/Device///PointingToDeclaration/-to-do-turtle/device.domain/-device/index.html
+$dokka.location:device.domain/Device/Device/#device.domain.DeviceIdentifier#device.domain.DeviceName/PointingToDeclaration/-to-do-turtle/device.domain/-device/-device.html
+$dokka.location:device.domain/Device/id/#/PointingToDeclaration/-to-do-turtle/device.domain/-device/id.html
+$dokka.location:device.domain/Device/name/#/PointingToDeclaration/-to-do-turtle/device.domain/-device/name.html
+$dokka.location:device.domain/DeviceIdentifier.Companion///PointingToDeclaration/-to-do-turtle/device.domain/-device-identifier/-companion/index.html
+$dokka.location:device.domain/DeviceIdentifier///PointingToDeclaration/-to-do-turtle/device.domain/-device-identifier/index.html
+$dokka.location:device.domain/DeviceIdentifier/DeviceIdentifier/#kotlin.String/PointingToDeclaration/-to-do-turtle/device.domain/-device-identifier/-device-identifier.html
+$dokka.location:device.domain/DeviceIdentifier/id/#/PointingToDeclaration/-to-do-turtle/device.domain/-device-identifier/id.html
+$dokka.location:device.domain/DeviceName///PointingToDeclaration/-to-do-turtle/device.domain/-device-name/index.html
+$dokka.location:device.domain/DeviceName/DeviceName/#kotlin.String/PointingToDeclaration/-to-do-turtle/device.domain/-device-name/-device-name.html
+$dokka.location:device.domain/DeviceName/name/#/PointingToDeclaration/-to-do-turtle/device.domain/-device-name/name.html
+$dokka.location:device.domain/DeviceRepository///PointingToDeclaration/-to-do-turtle/device.domain/-device-repository/index.html
+$dokka.location:device.domain/DeviceRepository/get/#device.domain.DeviceIdentifier/PointingToDeclaration/-to-do-turtle/device.domain/-device-repository/get.html
+$dokka.location:device.domain/DeviceRepository/save/#device.domain.Device/PointingToDeclaration/-to-do-turtle/device.domain/-device-repository/save.html
 $dokka.location:note.application////PointingToDeclaration/-to-do-turtle/note.application/index.html
 $dokka.location:note.application/NoteDeleter///PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/index.html
 $dokka.location:note.application/NoteDeleter/NoteDeleter/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/-note-deleter.html
@@ -51,6 +79,9 @@ $dokka.location:note.infra////PointingToDeclaration/-to-do-turtle/note.infra/in
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator///PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/index.html
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator/UuidV4NoteIdentifierGenerator/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/-uuid-v4-note-identifier-generator.html
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/generate.html
+device.application
+device.domain
+device.domain.exceptions
 note.application
 note.domain
 note.domain.exceptions
