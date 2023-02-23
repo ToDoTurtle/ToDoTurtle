@@ -5,6 +5,7 @@ import device.domain.DeviceIdentifier
 import device.domain.DeviceName
 import device.domain.DeviceRepository
 import device.domain.exceptions.AlreadyExistingDevice
+import device.domain.exceptions.IllegalDeviceNameException
 import device.domain.exceptions.InvalidUUIDException
 
 class CreateDevice(private val repository: DeviceRepository) {
@@ -13,6 +14,7 @@ class CreateDevice(private val repository: DeviceRepository) {
      * Creates a new device from primitives and saves it to the DeviceRepository
      * @throws InvalidUUIDException if the provided id is not a valid UUIDv4 identifier
      * @throws AlreadyExistingDevice if a new device already exists
+     * @throws IllegalDeviceNameException if the provided name is blank
      * @return The device instance that was saved inside the repository
      */
 
