@@ -16,11 +16,15 @@ object NoteMother {
         description = null,
     )
 
-    fun getNoteWithDifferentTitleFrom(note: Note) = note.copy(title = TitleMother.getDifferentTitleFrom(note.title))
+    fun getNoteWithDifferentTitleFrom(note: Note) = note.copy(
+        id = IdentifierMother.getDifferentValidIdentifier(note.id),
+        title = TitleMother.getDifferentTitleFrom(note.title),
+    )
+
     fun getNoteWithDifferentDescriptionFrom(note: Note): Note {
         val description = note.description?.let { DescriptionMother.getDifferentDescriptionFrom(it) }
             ?: DescriptionMother.getValidDescription()
-        return note.copy(description = description)
+        return note.copy(id = IdentifierMother.getDifferentValidIdentifier(note.id), description = description)
     }
 
     fun getIdentifierFrom(note: Note) = note.id

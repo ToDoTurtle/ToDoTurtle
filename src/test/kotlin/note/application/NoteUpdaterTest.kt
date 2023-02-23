@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.exceptions.AlreadyUsedIdentifierException
 import shared.mothers.IdentifierMother
 
 class NoteUpdaterTest {
@@ -22,14 +23,14 @@ class NoteUpdaterTest {
 
     @Test
     fun `Non existing note throws NonExistentNoteException and doesn't save it to the repository`() {
-        val oldNoteId =
-            IdentifierMother.getPrimitiveFrom(NoteMother.getIdentifierFrom(NoteMother.getValidNoteWithDescription()))
-        val newNote = NoteMother.getValidNoteWithDescription()
-        val identifier = NoteMother.getIdentifierFrom(newNote)
-        Mockito.`when`(repository.search(identifier)).thenReturn(null)
+        val nonExistingNote = NoteMother.getValidNoteWithDescription()
+        val nonExistingNoteId = NoteMother.getIdentifierFrom(nonExistingNote)
+        val nonExistingNoteIdPrimitive = IdentifierMother.getPrimitiveFrom(nonExistingNoteId)
+        val newNote = NoteMother.getNoteWithDifferentTitleFrom(nonExistingNote)
+        Mockito.`when`(repository.search(nonExistingNoteId)).thenReturn(null)
 
         assertThrows<NonExistentNoteException> {
-            noteUpdater.update(oldNoteId, newNote.toPrimitives())
+            noteUpdater.update(nonExistingNoteIdPrimitive, newNote.toPrimitives())
         }
     }
 
@@ -74,7 +75,6 @@ class NoteUpdaterTest {
         Mockito.verify(repository, Mockito.times(1)).save(newNote)
     }
 
-
     @Test
     fun `Existing note with changed title and description gets deleted and saved`() {
         val oldNote = NoteMother.getValidNoteWithDescription()
@@ -89,4 +89,18 @@ class NoteUpdaterTest {
         Mockito.verify(repository, Mockito.times(1)).save(newNote)
     }
 
+    @Test
+    fun `If the new note is different but we use the same id as the older, throw an AlreadyUsedIdentifier exception`() {
+        val oldNote = NoteMother.getValidNoteWithDescription()
+        val oldNoteId = NoteMother.getIdentifierFrom(oldNote)
+        val oldNoteIdPrimitive = IdentifierMother.getPrimitiveFrom(oldNoteId)
+        val newNote = NoteMother.getNoteWithDifferentDescriptionFrom(NoteMother.getNoteWithDifferentTitleFrom(oldNote))
+        val newNotePrimitives = newNote.toPrimitives().copy(noteId = oldNoteIdPrimitive)
+        Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
+
+        assertThrows<AlreadyUsedIdentifierException> { noteUpdater.update(oldNoteIdPrimitive, newNotePrimitives) }
+
+        Mockito.verify(repository, Mockito.times(0)).delete(oldNoteId)
+        Mockito.verify(repository, Mockito.times(0)).save(newNote)
+    }
 }
