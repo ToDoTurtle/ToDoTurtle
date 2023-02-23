@@ -7,5 +7,4 @@ object DeviceIdentifierMother {
     private const val INVALID_PRIMITIVE_DEVICE_IDENTIFIER = "Hi! I\'m an invalid identifier"
     fun getValidIdentifier() = DeviceIdentifier(PRIMITIVE_DEVICE_IDENTIFIER)
     fun getInvalidIdentifierPrimitive() = INVALID_PRIMITIVE_DEVICE_IDENTIFIER
-    fun getPrimitiveFrom(identifier: DeviceIdentifier) = identifier.id
 }

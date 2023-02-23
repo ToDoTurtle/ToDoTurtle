@@ -1,11 +1,14 @@
 package device.application
 
 import device.domain.DeviceIdentifier
+import device.domain.DeviceName
 import device.domain.DeviceRepository
 import device.domain.exceptions.AlreadyExistingDevice
+import device.domain.exceptions.IllegalDeviceNameException
 import device.domain.exceptions.InvalidUUIDException
 import device.mothers.DeviceIdentifierMother
 import device.mothers.DeviceMother
+import device.mothers.DeviceNameMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -28,6 +31,15 @@ class CreateDeviceTest {
 
         assertThrows<InvalidUUIDException> {
             DeviceIdentifier(invalidId)
+        }
+    }
+
+    @Test
+    fun `If trying to create a device with blank name, IllegalDeviceNameException is thrown`() {
+        val blankDeviceName = DeviceNameMother.getBlankDeviceNamePrimitive()
+
+        assertThrows<IllegalDeviceNameException> {
+            DeviceName(blankDeviceName)
         }
     }
 
