@@ -12,4 +12,5 @@ object IdentifierMother {
         if (uuid == id.id) return getDifferentValidIdentifier(id)
         return Identifier(uuid)
     }
+    const val invalidPrimitiveIdentifier = "InvalidUUID-12345"
 }

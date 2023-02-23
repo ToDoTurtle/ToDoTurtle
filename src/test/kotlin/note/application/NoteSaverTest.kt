@@ -8,6 +8,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.exceptions.AlreadyUsedIdentifierException
+import shared.domain.exceptions.InvalidUUIDException
+import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
 class NoteSaverTest {
@@ -27,6 +30,25 @@ class NoteSaverTest {
         val invalidTitlePrimitives = notePrimitives.copy(title = "")
         assertThrows<IllegalTitleException> {
             noteSaver.save(invalidTitlePrimitives)
+        }
+    }
+
+    @Test
+    fun `Invalid identifier throws InvalidUUID error`() {
+        val note = NoteMother.getValidNoteWithDescription().toPrimitives()
+        val invalidIdPrimitive = note.copy(noteId = IdentifierMother.invalidPrimitiveIdentifier)
+        assertThrows<InvalidUUIDException> {
+            noteSaver.save(invalidIdPrimitive)
+        }
+    }
+
+    @Test
+    fun `If a note with the same identifier already exists, throw an AlreadyUsedIdentifierException`() {
+        val note = NoteMother.getValidNoteWithDescription()
+        val noteId = NoteMother.getIdentifierFrom(note)
+        Mockito.`when`(repository.search(noteId)).thenReturn(note)
+        assertThrows<AlreadyUsedIdentifierException> {
+            noteSaver.save(note.toPrimitives())
         }
     }
 
