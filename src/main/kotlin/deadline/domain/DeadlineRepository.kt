@@ -1,8 +1,8 @@
 package deadline.domain
 
-import note.domain.NoteIdentifier
+import shared.domain.Identifier
 
 interface DeadlineRepository {
     fun save(deadline: Deadline)
-    fun get(noteIdentifier: NoteIdentifier): Deadline?
+    fun get(noteIdentifier: Identifier): Deadline?
 }

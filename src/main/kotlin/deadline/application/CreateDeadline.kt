@@ -4,22 +4,21 @@ import deadline.domain.Deadline
 import deadline.domain.DeadlineRepository
 import deadline.domain.Time
 import deadline.domain.exceptions.AlreadyConfiguredDeadline
-import note.domain.NoteIdentifier
+import shared.domain.Identifier
+import shared.domain.exceptions.InvalidUUIDException
 
 class CreateDeadline(private val repository: DeadlineRepository) {
 
     /***
      * Creates a new deadline and saves it to the DeadlineRepository
-     * @param unixTime is the time in unix time format and in Coordinated Universal Time (UTC), if you pass
-     * an incorrect time format or a different timezone (UTC +/- n) the deadline will be saved with time errors.
-     * @param noteId is the identifier of the note in primitive format.
      * @throws AlreadyConfiguredDeadline if a new deadline already exists
+     * @throws InvalidUUIDException if the noted id primitive isn't in a valid UUID v4 format
      * @return The deadline instance that was saved inside the repository
      */
-    fun create(noteId: String, unixTime: ULong) = create(NoteIdentifier(noteId), Time(unixTime))
+    fun create(primitives: DeadlinePrimitives) = create(Identifier(primitives.noteIdentifier), Time(primitives.time))
 
-    internal fun create(id: NoteIdentifier, time: Time): Deadline {
-        val deadline = repository.get(id)?.let { throw AlreadyConfiguredDeadline() } ?: Deadline(id, time)
+    private fun create(noteId: Identifier, time: Time): Deadline {
+        val deadline = repository.get(noteId)?.let { throw AlreadyConfiguredDeadline() } ?: Deadline(noteId, time)
         repository.save(deadline)
         return deadline
     }
