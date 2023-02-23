@@ -1,5 +1,5 @@
 package deadline.domain
 
-import note.domain.NoteIdentifier
+import shared.domain.Identifier
 
-data class Deadline(val note: NoteIdentifier, val time: Time)
+data class Deadline(val noteId: Identifier, val time: Time)

@@ -24,22 +24,21 @@ class CreateDeadlineTest {
     fun `If a deadline is already configured, throw an exception`() {
         val currentDeadline = DeadlineMother.getValidDeadline()
         val noteIdentifier = DeadlineMother.getNoteIdentifierFromDeadline(currentDeadline)
-        val identifier = noteIdentifier.toPrimitives()
-        val newTime = DeadlineMother.getDifferentTimeFrom(currentDeadline).toPrimitive()
+        val deadlinePrimitive = DeadlineMother.getPrimitivesFrom(currentDeadline)
 
         Mockito.`when`(repository.get(noteIdentifier)).thenReturn(currentDeadline)
 
-        assertThrows<AlreadyConfiguredDeadline> { useCase.create(identifier, newTime) }
+        assertThrows<AlreadyConfiguredDeadline> { useCase.create(deadlinePrimitive) }
     }
 
     @Test
     fun `If a deadline is not configured, save it to the repository`() {
         val deadline = DeadlineMother.getValidDeadline()
         val noteIdentifier = DeadlineMother.getNoteIdentifierFromDeadline(deadline)
-        val time = DeadlineMother.getTimeFromDeadline(deadline)
+        val deadlinePrimitive = DeadlineMother.getPrimitivesFrom(deadline)
 
         Mockito.`when`(repository.get(noteIdentifier)).thenReturn(null)
-        val resultingDeadline = useCase.create(noteIdentifier, time)
+        val resultingDeadline = useCase.create(deadlinePrimitive)
 
         assertEquals(deadline, resultingDeadline)
         Mockito.verify(repository, Mockito.times(1)).save(deadline)
