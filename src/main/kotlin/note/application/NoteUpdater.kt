@@ -18,7 +18,7 @@ class NoteUpdater(
      * @see Note
      * @throws NonExistentNoteException if the note does not exist
      * @throws UnchangedNoteException if the note is unchanged
-     * @return null or a note instance if it exists
+     * @return The newly created Note, with the corresponding updates
      */
     fun update(identifier: NoteIdentifier, newTitle: String, newDescription: String?): Note {
         val note = repository.search(identifier) ?: throw NonExistentNoteException(identifier)
