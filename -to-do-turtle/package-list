@@ -79,6 +79,28 @@ $dokka.location:note.infra////PointingToDeclaration/-to-do-turtle/note.infra/in
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator///PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/index.html
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator/UuidV4NoteIdentifierGenerator/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/-uuid-v4-note-identifier-generator.html
 $dokka.location:note.infra/UuidV4NoteIdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/generate.html
+$dokka.location:notification.application////PointingToDeclaration/-to-do-turtle/notification.application/index.html
+$dokka.location:notification.application/NotificationGetter///PointingToDeclaration/-to-do-turtle/notification.application/-notification-getter/index.html
+$dokka.location:notification.application/NotificationGetter/NotificationGetter/#notification.domain.NotificationRepository/PointingToDeclaration/-to-do-turtle/notification.application/-notification-getter/-notification-getter.html
+$dokka.location:notification.application/NotificationGetter/get/#kotlin.String/PointingToDeclaration/-to-do-turtle/notification.application/-notification-getter/get.html
+$dokka.location:notification.domain////PointingToDeclaration/-to-do-turtle/notification.domain/index.html
+$dokka.location:notification.domain/Notification///PointingToDeclaration/-to-do-turtle/notification.domain/-notification/index.html
+$dokka.location:notification.domain/Notification/Notification/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/-notification.html
+$dokka.location:notification.domain/Notification/id/#/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/id.html
+$dokka.location:notification.domain/NotificationRepository///PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/index.html
+$dokka.location:notification.domain/NotificationRepository/get/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/get.html
+$dokka.location:shared.domain.exceptions////PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/index.html
+$dokka.location:shared.domain.exceptions/InvalidUUIDException///PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/index.html
+$dokka.location:shared.domain.exceptions/InvalidUUIDException/InvalidUUIDException/#kotlin.String/PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/-invalid-u-u-i-d-exception.html
+$dokka.location:shared.domain.exceptions/InvalidUUIDException/message/#/PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/message.html
+$dokka.location:shared.domain////PointingToDeclaration/-to-do-turtle/shared.domain/index.html
+$dokka.location:shared.domain/Identifier.Companion///PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/-companion/index.html
+$dokka.location:shared.domain/Identifier.Companion/WANTED_VERSION/#/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/-companion/-w-a-n-t-e-d_-v-e-r-s-i-o-n.html
+$dokka.location:shared.domain/Identifier///PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/index.html
+$dokka.location:shared.domain/Identifier/Identifier/#kotlin.String/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/-identifier.html
+$dokka.location:shared.domain/Identifier/id/#/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/id.html
+$dokka.location:shared.domain/IdentifierGenerator///PointingToDeclaration/-to-do-turtle/shared.domain/-identifier-generator/index.html
+$dokka.location:shared.domain/IdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier-generator/generate.html
 device.application
 device.domain
 device.domain.exceptions
@@ -86,4 +108,8 @@ note.application
 note.domain
 note.domain.exceptions
 note.infra
+notification.application
+notification.domain
+shared.domain
+shared.domain.exceptions
 
