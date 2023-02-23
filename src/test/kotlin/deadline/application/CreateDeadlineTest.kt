@@ -1,6 +1,7 @@
 package deadline.application
 
 import deadline.domain.DeadlineRepository
+import deadline.domain.exceptions.AlreadyConfiguredDeadline
 import deadline.mothers.DeadlineMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -23,11 +24,12 @@ class CreateDeadlineTest {
     fun `If a deadline is already configured, throw an exception`() {
         val currentDeadline = DeadlineMother.getValidDeadline()
         val noteIdentifier = DeadlineMother.getNoteIdentifierFromDeadline(currentDeadline)
-        val newTime = DeadlineMother.getDifferentTimeFrom(currentDeadline)
+        val identifier = noteIdentifier.toPrimitives()
+        val newTime = DeadlineMother.getDifferentTimeFrom(currentDeadline).toPrimitive()
 
         Mockito.`when`(repository.get(noteIdentifier)).thenReturn(currentDeadline)
 
-        assertThrows<AlreadyConfiguredDeadline> { useCase.create(noteIdentifier, newTime) }
+        assertThrows<AlreadyConfiguredDeadline> { useCase.create(identifier, newTime) }
     }
 
     @Test
