@@ -1,39 +1,27 @@
 package note.mothers
 
 import note.domain.Note
+import shared.mothers.IdentifierMother
 
 object NoteMother {
     fun getValidNoteWithDescription() = Note(
-        id = NoteIdentifierMother.getValidIdentifier(),
+        id = IdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
         description = DescriptionMother.getValidDescription(),
     )
 
     fun getValidNoteWithoutDescription() = Note(
-        id = NoteIdentifierMother.getValidIdentifier(),
+        id = IdentifierMother.getValidIdentifier(),
         title = TitleMother.getValidTitle(),
         description = null,
     )
 
-    fun getAlternativeNoteWithDescription() = Note(
-        id = NoteIdentifierMother.getValidIdentifier(),
-        title = TitleMother.getAlternativeTitle(),
-        description = DescriptionMother.getAlternativeDescription(),
-    )
+    fun getNoteWithDifferentTitleFrom(note: Note) = note.copy(title = TitleMother.getDifferentTitleFrom(note.title))
+    fun getNoteWithDifferentDescriptionFrom(note: Note): Note {
+        val description = note.description?.let { DescriptionMother.getDifferentDescriptionFrom(it) }
+            ?: DescriptionMother.getValidDescription()
+        return note.copy(description = description)
+    }
 
-    fun getNoteWithOriginalTitleAndChangedDescription() = Note(
-        id = NoteIdentifierMother.getValidIdentifier(),
-        title = TitleMother.getValidTitle(),
-        description = DescriptionMother.getAlternativeDescription(),
-    )
-
-    fun getNoteWithChangedTitleAndOriginalDescription() = Note(
-        id = NoteIdentifierMother.getValidIdentifier(),
-        title = TitleMother.getAlternativeTitle(),
-        description = DescriptionMother.getValidDescription(),
-    )
-
-    fun getTitlePrimitiveFrom(note: Note) = TitleMother.getPrimitiveFrom(note.title)
-    fun getDescriptionPrimitiveFrom(note: Note): String? =
-        note.description?.let { DescriptionMother.getPrimitiveFrom(it) }
+    fun getIdentifierFrom(note: Note) = note.id
 }

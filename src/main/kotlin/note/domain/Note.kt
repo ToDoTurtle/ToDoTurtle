@@ -1,5 +1,7 @@
 package note.domain
 
-data class Note(val id: NoteIdentifier, val title: Title, val description: Description?) {
-    fun toPrimitives() = NotePrimitives(title.title, description?.description)
+import shared.domain.Identifier
+
+data class Note(val id: Identifier, val title: Title, val description: Description?) {
+    fun toPrimitives() = NotePrimitives(id.id, title.title, description?.description)
 }

@@ -1,8 +1,8 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifier
 import note.domain.NoteRepository
+import shared.domain.Identifier
 
 class NoteSearcher(
     private val repository: NoteRepository,
@@ -13,5 +13,6 @@ class NoteSearcher(
      * @see Note
      * @return null or a note instance if it exists
      */
-    fun search(identifier: NoteIdentifier) = repository.search(identifier)
+    fun search(identifier: Identifier) = repository.search(identifier)
+
 }

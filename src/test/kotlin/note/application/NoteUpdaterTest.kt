@@ -1,126 +1,92 @@
 package note.application
 
-import note.domain.Note
-import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.domain.exceptions.UnchangedNoteException
-import note.mothers.DescriptionMother
-import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
-import note.mothers.TitleMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.mothers.IdentifierMother
 
 class NoteUpdaterTest {
     private lateinit var noteUpdater: NoteUpdater
-    private lateinit var generator: NoteIdentifierGenerator
     private lateinit var repository: NoteRepository
-
-    private val identifier = NoteIdentifierMother.getValidIdentifier()
-    private val originalNote = NoteMother.getValidNoteWithDescription()
-    private val toBeSavedNote = NoteMother.getAlternativeNoteWithDescription()
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        generator = Mockito.mock(NoteIdentifierGenerator::class.java)
-        noteUpdater = NoteUpdater(repository, generator)
+        noteUpdater = NoteUpdater(repository)
     }
 
     @Test
-    fun `Invalid identifier throws NonExistentReminderException and doesn't call save`() {
-        // Initialize
+    fun `Non existing note throws NonExistentNoteException and doesn't save it to the repository`() {
+        val oldNoteId =
+            IdentifierMother.getPrimitiveFrom(NoteMother.getIdentifierFrom(NoteMother.getValidNoteWithDescription()))
+        val newNote = NoteMother.getValidNoteWithDescription()
+        val identifier = NoteMother.getIdentifierFrom(newNote)
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
 
-        val title = TitleMother.getPrimitiveFrom(originalNote.title)
-        val description = DescriptionMother.getPrimitiveFrom(originalNote.description!!)
-
-        // Execute and Assert
         assertThrows<NonExistentNoteException> {
-            noteUpdater.update(identifier, title, description)
+            noteUpdater.update(oldNoteId, newNote.toPrimitives())
         }
-
-        // Assert number of calls
-        assertRepositoryCalls(0, 0, toBeSavedNote)
     }
 
     @Test
-    fun `Valid identifier yet unchanged note throws UnchangedNoteException and doesn't call save`() {
-        // Initialize
-        Mockito.`when`(repository.search(identifier)).thenReturn(toBeSavedNote)
+    fun `Unchanged note throws UnchangedNoteException and doesn't save it inside the repository`() {
+        val note = NoteMother.getValidNoteWithoutDescription()
+        val id = IdentifierMother.getPrimitiveFrom(NoteMother.getIdentifierFrom(note))
+        val identifier = NoteMother.getIdentifierFrom(note)
+        Mockito.`when`(repository.search(identifier)).thenReturn(note)
 
-        val sameTitle = TitleMother.getPrimitiveFrom(toBeSavedNote.title)
-        val sameDescription = DescriptionMother.getPrimitiveFrom(toBeSavedNote.description!!)
-
-        // Execute and Assert
         assertThrows<UnchangedNoteException> {
-            noteUpdater.update(identifier, sameTitle, sameDescription)
+            noteUpdater.update(id, note.toPrimitives())
         }
-
-        // Assert number of calls
-        assertRepositoryCalls(0, 0, toBeSavedNote)
     }
+
+    @Test
+    fun `Existing note with changed title gets deleted and saved`() {
+        val oldNote = NoteMother.getValidNoteWithDescription()
+        val oldNoteId = NoteMother.getIdentifierFrom(oldNote)
+        val oldNoteIdPrimitive = IdentifierMother.getPrimitiveFrom(oldNoteId)
+
+        val newNote = NoteMother.getNoteWithDifferentTitleFrom(oldNote)
+        Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
+
+        noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
+
+        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).save(newNote)
+    }
+
+    @Test
+    fun `Existing note with changed description gets deleted and saved`() {
+        val oldNote = NoteMother.getValidNoteWithDescription()
+        val oldNoteId = NoteMother.getIdentifierFrom(oldNote)
+        val oldIdPrimitive = IdentifierMother.getPrimitiveFrom(oldNoteId)
+        val newNote = NoteMother.getNoteWithDifferentDescriptionFrom(oldNote)
+        Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
+
+        noteUpdater.update(oldIdPrimitive, newNote.toPrimitives())
+
+        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).save(newNote)
+    }
+
 
     @Test
     fun `Existing note with changed title and description gets deleted and saved`() {
-        // Initialize
-        Mockito.`when`(repository.search(identifier)).thenReturn(originalNote)
-        Mockito.`when`(generator.generate()).thenReturn(identifier)
+        val oldNote = NoteMother.getValidNoteWithDescription()
+        val oldNoteId = NoteMother.getIdentifierFrom(oldNote)
+        val oldNoteIdPrimitive = IdentifierMother.getPrimitiveFrom(oldNoteId)
+        val newNote = NoteMother.getNoteWithDifferentDescriptionFrom(NoteMother.getNoteWithDifferentTitleFrom(oldNote))
+        Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
-        val newTitle = TitleMother.getPrimitiveFrom(toBeSavedNote.title)
-        val newDescription = DescriptionMother.getPrimitiveFrom(toBeSavedNote.description!!)
+        noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
 
-        // Execute and Assert
-        noteUpdater.update(identifier, newTitle, newDescription)
-
-        // Assert number of calls
-        assertRepositoryCalls(1, 1, toBeSavedNote)
+        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).save(newNote)
     }
 
-    @Test
-    fun `Existing note with changed title and same description gets deleted and saved`() {
-        // Initialize
-        Mockito.`when`(repository.search(identifier)).thenReturn(originalNote)
-        Mockito.`when`(generator.generate()).thenReturn(identifier)
-
-        val sameTitleDiferentDescriptionNote = NoteMother.getNoteWithOriginalTitleAndChangedDescription()
-        val sameTitle = TitleMother.getPrimitiveFrom(sameTitleDiferentDescriptionNote.title)
-        val newDescription = DescriptionMother.getPrimitiveFrom(sameTitleDiferentDescriptionNote.description!!)
-
-        // Execute and Assert
-        noteUpdater.update(identifier, sameTitle, newDescription)
-
-        // Assert number of calls
-        assertRepositoryCalls(1, 1, sameTitleDiferentDescriptionNote)
-    }
-
-    @Test
-    fun `Existing note with same title and changed description gets deleted and saved`() {
-        // Initialize
-        Mockito.`when`(repository.search(identifier)).thenReturn(originalNote)
-        Mockito.`when`(generator.generate()).thenReturn(identifier)
-
-        val diferentTitleSameDescriptionNote = NoteMother.getNoteWithChangedTitleAndOriginalDescription()
-        val sameTitle = TitleMother.getPrimitiveFrom(diferentTitleSameDescriptionNote.title)
-        val newDescription = DescriptionMother.getPrimitiveFrom(diferentTitleSameDescriptionNote.description!!)
-
-        // Execute and Assert
-        noteUpdater.update(identifier, sameTitle, newDescription)
-
-        // Assert number of calls
-        assertRepositoryCalls(1, 1, diferentTitleSameDescriptionNote)
-    }
-
-    private fun assertRepositoryCalls(
-        deleteCalls: Int,
-        saveCalls: Int,
-        toBeSavedNote: Note,
-    ) {
-        Mockito.verify(repository, Mockito.times(deleteCalls)).delete(toBeSavedNote.id)
-        Mockito.verify(repository, Mockito.times(saveCalls))
-            .save(toBeSavedNote)
-    }
 }

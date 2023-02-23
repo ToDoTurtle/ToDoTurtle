@@ -1,7 +1,6 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.IllegalTitleException
 import note.mothers.NoteMother
@@ -14,20 +13,20 @@ import kotlin.test.assertEquals
 class NoteSaverTest {
 
     private lateinit var noteSaver: NoteSaver
-    private lateinit var generator: NoteIdentifierGenerator
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        generator = Mockito.mock(NoteIdentifierGenerator::class.java)
-        noteSaver = NoteSaver(repository, generator)
+        noteSaver = NoteSaver(repository)
     }
 
     @Test
     fun `Empty title throws IllegalTitleException`() {
+        val notePrimitives = NoteMother.getValidNoteWithDescription().toPrimitives()
+        val invalidTitlePrimitives = notePrimitives.copy(title = "")
         assertThrows<IllegalTitleException> {
-            noteSaver.save("", null)
+            noteSaver.save(invalidTitlePrimitives)
         }
     }
 
@@ -44,13 +43,8 @@ class NoteSaverTest {
     }
 
     private fun `Assert that the note was saved to the repository given the primitives from`(note: Note) {
-        // Setup values
-        val title = NoteMother.getTitlePrimitiveFrom(note)
-        val description = NoteMother.getDescriptionPrimitiveFrom(note)
-        Mockito.`when`(generator.generate()).thenReturn(note.id)
-        // Execute
-        val result = noteSaver.save(title, description)
-        // Assert
+        val result = noteSaver.save(note.toPrimitives())
+
         Mockito.verify(repository, Mockito.times(1)).save(note)
         assertEquals(note, result)
     }

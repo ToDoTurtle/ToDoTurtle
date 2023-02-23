@@ -1,3 +1,3 @@
 package note.domain
 
-data class NotePrimitives(val title: String, val description: String?)
+data class NotePrimitives(val noteId: String, val title: String, val description: String?)
