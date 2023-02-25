@@ -1,5 +1,27 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
+$dokka.location:deadline.application////PointingToDeclaration/-to-do-turtle/deadline.application/index.html
+$dokka.location:deadline.application/CreateDeadline///PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/index.html
+$dokka.location:deadline.application/CreateDeadline/CreateDeadline/#deadline.domain.DeadlineRepository/PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/-create-deadline.html
+$dokka.location:deadline.application/CreateDeadline/create/#deadline.application.DeadlinePrimitives/PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/create.html
+$dokka.location:deadline.application/DeadlinePrimitives///PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/index.html
+$dokka.location:deadline.application/DeadlinePrimitives/DeadlinePrimitives/#kotlin.String#kotlin.ULong/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/-deadline-primitives.html
+$dokka.location:deadline.application/DeadlinePrimitives/noteIdentifier/#/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/note-identifier.html
+$dokka.location:deadline.application/DeadlinePrimitives/time/#/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/time.html
+$dokka.location:deadline.domain.exceptions////PointingToDeclaration/-to-do-turtle/deadline.domain.exceptions/index.html
+$dokka.location:deadline.domain.exceptions/AlreadyConfiguredDeadline///PointingToDeclaration/-to-do-turtle/deadline.domain.exceptions/-already-configured-deadline/index.html
+$dokka.location:deadline.domain.exceptions/AlreadyConfiguredDeadline/AlreadyConfiguredDeadline/#/PointingToDeclaration/-to-do-turtle/deadline.domain.exceptions/-already-configured-deadline/-already-configured-deadline.html
+$dokka.location:deadline.domain////PointingToDeclaration/-to-do-turtle/deadline.domain/index.html
+$dokka.location:deadline.domain/Deadline///PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/index.html
+$dokka.location:deadline.domain/Deadline/Deadline/#shared.domain.Identifier#deadline.domain.Time/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/-deadline.html
+$dokka.location:deadline.domain/Deadline/noteId/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/note-id.html
+$dokka.location:deadline.domain/Deadline/time/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/time.html
+$dokka.location:deadline.domain/DeadlineRepository///PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/index.html
+$dokka.location:deadline.domain/DeadlineRepository/get/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/get.html
+$dokka.location:deadline.domain/DeadlineRepository/save/#deadline.domain.Deadline/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/save.html
+$dokka.location:deadline.domain/Time///PointingToDeclaration/-to-do-turtle/deadline.domain/-time/index.html
+$dokka.location:deadline.domain/Time/Time/#kotlin.ULong/PointingToDeclaration/-to-do-turtle/deadline.domain/-time/-time.html
+$dokka.location:deadline.domain/Time/time/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-time/time.html
 $dokka.location:device.application////PointingToDeclaration/-to-do-turtle/device.application/index.html
 $dokka.location:device.application/CreateDevice///PointingToDeclaration/-to-do-turtle/device.application/-create-device/index.html
 $dokka.location:device.application/CreateDevice/CreateDevice/#device.domain.DeviceRepository/PointingToDeclaration/-to-do-turtle/device.application/-create-device/-create-device.html
@@ -62,6 +84,7 @@ $dokka.location:note.domain/Note/title/#/PointingToDeclaration/-to-do-turtle/no
 $dokka.location:note.domain/Note/toPrimitives/#/PointingToDeclaration/-to-do-turtle/note.domain/-note/to-primitives.html
 $dokka.location:note.domain/NoteIdentifier///PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/index.html
 $dokka.location:note.domain/NoteIdentifier/NoteIdentifier/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/-note-identifier.html
+$dokka.location:note.domain/NoteIdentifier/toPrimitives/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/to-primitives.html
 $dokka.location:note.domain/NoteIdentifierGenerator///PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier-generator/index.html
 $dokka.location:note.domain/NoteIdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier-generator/generate.html
 $dokka.location:note.domain/NotePrimitives///PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/index.html
@@ -101,6 +124,9 @@ $dokka.location:shared.domain/Identifier/Identifier/#kotlin.String/PointingToDec
 $dokka.location:shared.domain/Identifier/id/#/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier/id.html
 $dokka.location:shared.domain/IdentifierGenerator///PointingToDeclaration/-to-do-turtle/shared.domain/-identifier-generator/index.html
 $dokka.location:shared.domain/IdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/shared.domain/-identifier-generator/generate.html
+deadline.application
+deadline.domain
+deadline.domain.exceptions
 device.application
 device.domain
 device.domain.exceptions
