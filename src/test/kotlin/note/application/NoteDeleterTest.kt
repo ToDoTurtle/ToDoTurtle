@@ -1,32 +1,32 @@
 package note.application
 
-import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
-import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.IdentifierGenerator
+import shared.mothers.IdentifierMother
 
 class NoteDeleterTest {
     private lateinit var noteDeleter: NoteDeleter
-    private lateinit var generator: NoteIdentifierGenerator
+    private lateinit var generator: IdentifierGenerator
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        generator = Mockito.mock(NoteIdentifierGenerator::class.java)
+        generator = Mockito.mock(IdentifierGenerator::class.java)
         noteDeleter = NoteDeleter(repository)
     }
 
     @Test
     fun `Invalid identifier throws NonExistentNoteException`() {
         // Initialize
-        val identifier = NoteIdentifierMother.getValidIdentifier()
+        val identifier = IdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute and Assert
         assertThrows<NonExistentNoteException> {

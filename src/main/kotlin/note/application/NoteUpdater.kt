@@ -1,18 +1,18 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifier
-import note.domain.NoteIdentifierGenerator
 import note.domain.NotePrimitives
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.domain.exceptions.UnchangedNoteException
+import shared.domain.Identifier
+import shared.domain.IdentifierGenerator
 
 class NoteUpdater(
     private val repository: NoteRepository,
-    private val identifierGenerator: NoteIdentifierGenerator,
+    private val identifierGenerator: IdentifierGenerator,
 ) {
-    fun update(identifier: NoteIdentifier, newTitle: String, newDescription: String?): Note {
+    fun update(identifier: Identifier, newTitle: String, newDescription: String?): Note {
         val note = repository.search(identifier) ?: throw NonExistentNoteException(identifier)
         if (unchangedNote(note, newTitle, newDescription)) throw UnchangedNoteException(identifier)
         repository.delete(identifier)

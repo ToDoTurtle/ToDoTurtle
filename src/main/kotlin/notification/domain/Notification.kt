@@ -2,4 +2,4 @@ package notification.domain
 
 import shared.domain.Identifier
 
-class Notification(val id: Identifier)
+class Notification(val id: Identifier, val noteId: Identifier)

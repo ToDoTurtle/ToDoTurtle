@@ -1,5 +1,6 @@
 package notification.application
 
+import note.mothers.NoteMother
 import notification.domain.NotificationRepository
 import notification.mothers.NotificationMother
 import org.junit.jupiter.api.BeforeEach
@@ -22,7 +23,7 @@ class NotificationGetterTest {
     }
 
     @Test
-    fun `If the reminder doesnt exist, return null`() {
+    fun `If the notification doesn't exist, return null`() {
         val identifier = IdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.get(identifier)).thenReturn(null)
 
@@ -33,7 +34,7 @@ class NotificationGetterTest {
     }
 
     @Test
-    fun `If the reminder exists, return it`() {
+    fun `If the notification exists, return it`() {
         val notification = NotificationMother.getValidNotification()
         Mockito.`when`(repository.get(notification.id)).thenReturn(notification)
 
@@ -42,4 +43,37 @@ class NotificationGetterTest {
         Mockito.verify(repository, Mockito.times(1)).get(notification.id)
         assertEquals(notification, result)
     }
+
+//    @Test
+//    fun `If there are no notifications for the given note identifier, return null`() {
+//        val noteId = IdentifierMother.getValidIdentifier()
+//        Mockito.`when`(repository.getAll(noteId)).thenReturn(null)
+//
+//        val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
+//
+//        Mockito.verify(repository, Mockito.times(1)).get(noteId)
+//        assertEquals(null, result)
+//    }
+//
+//    @Test
+//    fun `If there is one notification for the given note identifier, return it`() {
+//        val note = NoteMother.getValidNoteWithDescription()
+//        Mockito.`when`(repository.getAll(NoteMother.get)).thenReturn(null)
+//
+//        val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
+//
+//        Mockito.verify(repository, Mockito.times(1)).get(noteId)
+//        assertEquals(null, result)
+//    }
+//
+//    @Test
+//    fun `If there are more than one notifications for the given note identifier, return them`() {
+//        val noteId = IdentifierMother.getValidIdentifier()
+//        Mockito.`when`(repository.getAll(noteId)).thenReturn(null)
+//
+//        val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
+//
+//        Mockito.verify(repository, Mockito.times(1)).get(noteId)
+//        assertEquals(null, result)
+//    }
 }

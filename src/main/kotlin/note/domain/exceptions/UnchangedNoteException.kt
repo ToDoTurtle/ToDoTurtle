@@ -1,7 +1,7 @@
 package note.domain.exceptions
 
-import note.domain.NoteIdentifier
+import shared.domain.Identifier
 
-class UnchangedNoteException(identifier: NoteIdentifier) : Exception() {
+class UnchangedNoteException(identifier: Identifier) : Exception() {
     override val message: String = "Note with identifier $identifier is unchanged."
 }

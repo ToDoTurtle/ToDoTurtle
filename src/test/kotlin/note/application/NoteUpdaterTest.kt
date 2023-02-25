@@ -1,32 +1,32 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.domain.exceptions.UnchangedNoteException
 import note.mothers.DescriptionMother
-import note.mothers.NoteIdentifierMother
 import note.mothers.NoteMother
 import note.mothers.TitleMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.IdentifierGenerator
+import shared.mothers.IdentifierMother
 
 class NoteUpdaterTest {
     private lateinit var noteUpdater: NoteUpdater
-    private lateinit var generator: NoteIdentifierGenerator
+    private lateinit var generator: IdentifierGenerator
     private lateinit var repository: NoteRepository
 
-    private val identifier = NoteIdentifierMother.getValidIdentifier()
+    private val identifier = IdentifierMother.getValidIdentifier()
     private val originalNote = NoteMother.getValidNoteWithDescription()
     private val toBeSavedNote = NoteMother.getAlternativeNoteWithDescription()
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        generator = Mockito.mock(NoteIdentifierGenerator::class.java)
+        generator = Mockito.mock(IdentifierGenerator::class.java)
         noteUpdater = NoteUpdater(repository, generator)
     }
 

@@ -1,7 +1,6 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifierGenerator
 import note.domain.NoteRepository
 import note.domain.exceptions.IllegalTitleException
 import note.mothers.NoteMother
@@ -9,18 +8,19 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.IdentifierGenerator
 import kotlin.test.assertEquals
 
 class NoteSaverTest {
 
     private lateinit var noteSaver: NoteSaver
-    private lateinit var generator: NoteIdentifierGenerator
+    private lateinit var generator: IdentifierGenerator
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        generator = Mockito.mock(NoteIdentifierGenerator::class.java)
+        generator = Mockito.mock(IdentifierGenerator::class.java)
         noteSaver = NoteSaver(repository, generator)
     }
 
