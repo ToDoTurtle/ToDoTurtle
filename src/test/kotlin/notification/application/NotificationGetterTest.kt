@@ -52,7 +52,7 @@ class NotificationGetterTest {
 
         val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
 
-        Mockito.verify(repository, Mockito.times(1)).get(noteId)
+        Mockito.verify(repository, Mockito.times(1)).getAll(noteId)
         assertEquals(Collections.emptyList<Notification>(), result)
     }
 
@@ -64,7 +64,7 @@ class NotificationGetterTest {
 
         val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
 
-        Mockito.verify(repository, Mockito.times(1)).get(noteId)
+        Mockito.verify(repository, Mockito.times(1)).getAll(noteId)
         assertEquals(listOf(notification), result)
     }
 
@@ -72,11 +72,11 @@ class NotificationGetterTest {
     fun `If there are more than one notifications for the given note identifier, return collection containing them`() {
         val noteId = IdentifierMother.getValidIdentifier()
         val notifications = NotificationMother.getNotificationsFromNoteId(noteId)
-        Mockito.`when`(repository.getAll(noteId)).thenReturn(listOf(notifications))
+        Mockito.`when`(repository.getAll(noteId)).thenReturn(notifications)
 
         val result = notificationGetter.getAll(IdentifierMother.getPrimitiveFrom(noteId))
 
-        Mockito.verify(repository, Mockito.times(1)).get(noteId)
-        assertEquals(listOf(notifications), result)
+        Mockito.verify(repository, Mockito.times(1)).getAll(noteId)
+        assertEquals(notifications, result)
     }
 }
