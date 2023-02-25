@@ -3,6 +3,7 @@ package notification.application
 import notification.domain.Notification
 import notification.domain.NotificationRepository
 import shared.domain.Identifier
+import java.util.Collections
 
 class NotificationGetter(
     private val repository: NotificationRepository,
