@@ -15,7 +15,7 @@ class NoteUpdater(
 ) {
     /***
      * Updates a Note with the given identifier with the newNote primitives.
-     * @throws InvalidUUIDException if the new note id from the primitives isn't valid
+     * @throws InvalidUUIDException if the new note id from the primitives or the old note identifier isn't valid
      * @throws AlreadyUsedIdentifierException if the id of the new note is already used on the repository
      * @throws NonExistentNoteException if the old note identifier doesn't exist on the repository
      * @throws UnchangedNoteException if the new note content is the same as the old one
@@ -23,10 +23,11 @@ class NoteUpdater(
      * @throws IllegalTitleException if the new title isn't valid
      * @return The new saved instance of Note
      */
-    fun update(oldNoteIdentifier: String, newNote: NotePrimitives): Note {
-        val oldNoteId = Identifier(oldNoteIdentifier)
-        assertUpdateConditions(oldNoteId, newNote)
-        return update(oldNoteId = oldNoteId, newNote = newNote)
+    fun update(oldNoteIdentifier: String, newNote: NotePrimitives) = update(Identifier(oldNoteIdentifier), newNote)
+
+    internal fun update(oldNoteIdentifier: Identifier, newNote: NotePrimitives): Note {
+        assertUpdateConditions(oldNoteIdentifier, newNote)
+        return updateNote(oldNoteId = oldNoteIdentifier, newNote = newNote)
     }
 
     private fun assertUpdateConditions(oldNoteId: Identifier, newNote: NotePrimitives) {
@@ -34,7 +35,7 @@ class NoteUpdater(
         if (newNote.hasSameContent(oldNote.toPrimitives())) throw UnchangedNoteException(oldNoteId)
     }
 
-    private fun update(oldNoteId: Identifier, newNote: NotePrimitives): Note {
+    private fun updateNote(oldNoteId: Identifier, newNote: NotePrimitives): Note {
         val result = NoteSaver(repository).save(newNote)
         repository.delete(oldNoteId)
         return result
