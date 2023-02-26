@@ -48,11 +48,8 @@ class CreateDeviceTest {
         val currentDevice = DeviceMother.getValidDevice()
         Mockito.`when`(repository.get(currentDevice.id)).thenReturn(currentDevice)
 
-        val idPrimitive = DeviceMother.getIdPrimitiveFrom(currentDevice)
-        val namePrimitive = DeviceMother.getNamePrimitiveFrom(currentDevice)
-
         assertThrows<AlreadyExistingDevice> {
-            useCase.create(idPrimitive, namePrimitive)
+            useCase.create(currentDevice.toPrimitives())
         }
 
         Mockito.verify(repository, Mockito.times(0)).save(currentDevice)
@@ -63,10 +60,7 @@ class CreateDeviceTest {
         val currentDevice = DeviceMother.getValidDevice()
         Mockito.`when`(repository.get(currentDevice.id)).thenReturn(null)
 
-        val idPrimitive = DeviceMother.getIdPrimitiveFrom(currentDevice)
-        val namePrimitive = DeviceMother.getNamePrimitiveFrom(currentDevice)
-
-        useCase.create(idPrimitive, namePrimitive)
+        useCase.create(currentDevice.toPrimitives())
 
         Mockito.verify(repository, Mockito.times(1)).save(currentDevice)
     }

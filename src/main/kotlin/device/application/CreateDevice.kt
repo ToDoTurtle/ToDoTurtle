@@ -2,6 +2,7 @@ package device.application
 
 import device.domain.Device
 import device.domain.DeviceName
+import device.domain.DevicePrimitives
 import device.domain.DeviceRepository
 import device.domain.exceptions.AlreadyExistingDevice
 import device.domain.exceptions.IllegalDeviceNameException
@@ -18,7 +19,7 @@ class CreateDevice(private val repository: DeviceRepository) {
      * @return The device instance that was saved inside the repository
      */
 
-    fun create(id: String, name: String) = create(Identifier(id), DeviceName(name))
+    fun create(primitives: DevicePrimitives) = create(Identifier(primitives.id), DeviceName(primitives.name))
 
     /***
      * Creates a new device from domain objects and saves it to the DeviceRepository
