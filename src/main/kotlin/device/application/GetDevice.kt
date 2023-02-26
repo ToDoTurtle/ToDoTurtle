@@ -1,8 +1,8 @@
 package device.application
 
 import device.domain.Device
-import device.domain.DeviceIdentifier
 import device.domain.DeviceRepository
+import shared.domain.Identifier
 
 class GetDevice(
     private val repository: DeviceRepository,
@@ -12,5 +12,5 @@ class GetDevice(
      * @see Device
      * @return null or a device instance if it exists
      */
-    fun get(identifier: DeviceIdentifier) = repository.get(identifier)
+    fun get(identifier: Identifier) = repository.get(identifier)
 }

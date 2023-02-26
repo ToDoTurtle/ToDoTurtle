@@ -1,10 +1,11 @@
 package device.mothers
 
 import device.domain.Device
+import shared.mothers.IdentifierMother
 
 object DeviceMother {
     fun getValidDevice() = Device(
-        id = DeviceIdentifierMother.getValidIdentifier(),
+        id = IdentifierMother.getValidIdentifier(),
         name = DeviceNameMother.getValidDeviceName(),
     )
     fun getIdPrimitiveFrom(device: Device) = device.id.id

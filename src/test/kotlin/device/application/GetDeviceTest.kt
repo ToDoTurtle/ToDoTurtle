@@ -1,12 +1,12 @@
 package device.application
 
 import device.domain.DeviceRepository
-import device.mothers.DeviceIdentifierMother
 import device.mothers.DeviceMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import shared.domain.IdentifierGenerator
+import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
 class GetDeviceTest {
@@ -24,7 +24,7 @@ class GetDeviceTest {
     @Test
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
         // Initialize
-        val identifier = DeviceIdentifierMother.getValidIdentifier()
+        val identifier = IdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.get(identifier)).thenReturn(null)
         // Execute
         val result = useCase.get(identifier)
