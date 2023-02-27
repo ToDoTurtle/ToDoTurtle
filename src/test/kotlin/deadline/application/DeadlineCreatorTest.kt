@@ -9,15 +9,15 @@ import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import kotlin.test.assertEquals
 
-class CreateDeadlineTest {
+class DeadlineCreatorTest {
 
     private lateinit var repository: DeadlineRepository
-    private lateinit var useCase: CreateDeadline
+    private lateinit var useCase: DeadlineCreator
 
     @BeforeEach
     fun `Set Up`() {
         repository = Mockito.mock(DeadlineRepository::class.java)
-        useCase = CreateDeadline(repository)
+        useCase = DeadlineCreator(repository)
     }
 
     @Test
