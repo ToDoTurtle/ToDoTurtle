@@ -7,7 +7,7 @@ import deadline.domain.exceptions.AlreadyConfiguredDeadline
 import shared.domain.Identifier
 import shared.domain.exceptions.InvalidUUIDException
 
-class CreateDeadline(private val repository: DeadlineRepository) {
+class DeadlineCreator(private val repository: DeadlineRepository) {
 
     /***
      * Creates a new deadline and saves it to the DeadlineRepository
