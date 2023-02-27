@@ -5,4 +5,5 @@ import shared.domain.Identifier
 interface DeadlineRepository {
     fun create(deadline: Deadline)
     fun search(noteIdentifier: Identifier): Deadline?
+    fun remove(deadline: Deadline)
 }
