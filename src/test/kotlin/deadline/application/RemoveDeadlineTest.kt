@@ -22,15 +22,15 @@ class RemoveDeadlineTest {
 
     @Test
     fun `Note without deadline throws an exception`() {
-        val noteId = NoteMother.getValidNoteWithDescription()
-        assertThrows<NonExistentDeadlineException> { useCase.remove(noteId.id) }
+        val noteId = NoteMother.getIdentifierFrom(NoteMother.getValidNoteWithDescription())
+        assertThrows<NonExistentDeadlineException> { useCase.remove(noteId) }
     }
 
     @Test
     fun `Note with deadline removes the note from the deadline repository`() {
         val deadline = DeadlineMother.getValidDeadline()
         val noteId = DeadlineMother.getNoteIdentifierFromDeadline(deadline)
-        Mockito.`when`(repository.get(noteId)).thenReturn(deadline)
+        Mockito.`when`(repository.search(noteId)).thenReturn(deadline)
 
         val removedDeadline = useCase.remove(noteId)
 
