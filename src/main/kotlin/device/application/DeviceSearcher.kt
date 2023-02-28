@@ -12,6 +12,6 @@ class DeviceSearcher(
      * @see Device
      * @return null or a device instance if it exists
      */
-    fun get(identifier: String) = repository.search(Identifier(identifier))
-    internal fun get(identifier: Identifier) = repository.search(identifier)
+    fun get(identifier: String) = get(Identifier(identifier))
+    private fun get(identifier: Identifier) = repository.search(identifier)
 }
