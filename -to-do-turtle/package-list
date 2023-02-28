@@ -53,31 +53,31 @@ $dokka.location:device.domain/DeviceRepository/save/#device.domain.Device/Pointi
 $dokka.location:note.application////PointingToDeclaration/-to-do-turtle/note.application/index.html
 $dokka.location:note.application/NoteDeleter///PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/index.html
 $dokka.location:note.application/NoteDeleter/NoteDeleter/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/-note-deleter.html
-$dokka.location:note.application/NoteDeleter/delete/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/delete.html
+$dokka.location:note.application/NoteDeleter/delete/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.application/-note-deleter/delete.html
 $dokka.location:note.application/NoteSaver///PointingToDeclaration/-to-do-turtle/note.application/-note-saver/index.html
-$dokka.location:note.application/NoteSaver/NoteSaver/#note.domain.NoteRepository#note.domain.NoteIdentifierGenerator/PointingToDeclaration/-to-do-turtle/note.application/-note-saver/-note-saver.html
-$dokka.location:note.application/NoteSaver/save/#kotlin.String#kotlin.String?/PointingToDeclaration/-to-do-turtle/note.application/-note-saver/save.html
+$dokka.location:note.application/NoteSaver/NoteSaver/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-saver/-note-saver.html
+$dokka.location:note.application/NoteSaver/save/#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.application/-note-saver/save.html
 $dokka.location:note.application/NoteSearcher///PointingToDeclaration/-to-do-turtle/note.application/-note-searcher/index.html
 $dokka.location:note.application/NoteSearcher/NoteSearcher/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-searcher/-note-searcher.html
-$dokka.location:note.application/NoteSearcher/search/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.application/-note-searcher/search.html
+$dokka.location:note.application/NoteSearcher/search/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.application/-note-searcher/search.html
 $dokka.location:note.application/NoteUpdater///PointingToDeclaration/-to-do-turtle/note.application/-note-updater/index.html
-$dokka.location:note.application/NoteUpdater/NoteUpdater/#note.domain.NoteRepository#note.domain.NoteIdentifierGenerator/PointingToDeclaration/-to-do-turtle/note.application/-note-updater/-note-updater.html
-$dokka.location:note.application/NoteUpdater/update/#note.domain.NoteIdentifier#kotlin.String#kotlin.String?/PointingToDeclaration/-to-do-turtle/note.application/-note-updater/update.html
+$dokka.location:note.application/NoteUpdater/NoteUpdater/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-updater/-note-updater.html
+$dokka.location:note.application/NoteUpdater/update/#kotlin.String#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.application/-note-updater/update.html
 $dokka.location:note.domain.exceptions////PointingToDeclaration/-to-do-turtle/note.domain.exceptions/index.html
 $dokka.location:note.domain.exceptions/IllegalTitleException///PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-illegal-title-exception/index.html
 $dokka.location:note.domain.exceptions/IllegalTitleException/IllegalTitleException/#/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-illegal-title-exception/-illegal-title-exception.html
 $dokka.location:note.domain.exceptions/NonExistentNoteException///PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-non-existent-note-exception/index.html
-$dokka.location:note.domain.exceptions/NonExistentNoteException/NonExistentNoteException/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-non-existent-note-exception/-non-existent-note-exception.html
+$dokka.location:note.domain.exceptions/NonExistentNoteException/NonExistentNoteException/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-non-existent-note-exception/-non-existent-note-exception.html
 $dokka.location:note.domain.exceptions/NonExistentNoteException/message/#/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-non-existent-note-exception/message.html
 $dokka.location:note.domain.exceptions/UnchangedNoteException///PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-unchanged-note-exception/index.html
-$dokka.location:note.domain.exceptions/UnchangedNoteException/UnchangedNoteException/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-unchanged-note-exception/-unchanged-note-exception.html
+$dokka.location:note.domain.exceptions/UnchangedNoteException/UnchangedNoteException/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-unchanged-note-exception/-unchanged-note-exception.html
 $dokka.location:note.domain.exceptions/UnchangedNoteException/message/#/PointingToDeclaration/-to-do-turtle/note.domain.exceptions/-unchanged-note-exception/message.html
 $dokka.location:note.domain////PointingToDeclaration/-to-do-turtle/note.domain/index.html
 $dokka.location:note.domain/Description///PointingToDeclaration/-to-do-turtle/note.domain/-description/index.html
 $dokka.location:note.domain/Description/Description/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.domain/-description/-description.html
 $dokka.location:note.domain/Description/description/#/PointingToDeclaration/-to-do-turtle/note.domain/-description/description.html
 $dokka.location:note.domain/Note///PointingToDeclaration/-to-do-turtle/note.domain/-note/index.html
-$dokka.location:note.domain/Note/Note/#note.domain.NoteIdentifier#note.domain.Title#note.domain.Description?/PointingToDeclaration/-to-do-turtle/note.domain/-note/-note.html
+$dokka.location:note.domain/Note/Note/#shared.domain.Identifier#note.domain.Title#note.domain.Description?/PointingToDeclaration/-to-do-turtle/note.domain/-note/-note.html
 $dokka.location:note.domain/Note/description/#/PointingToDeclaration/-to-do-turtle/note.domain/-note/description.html
 $dokka.location:note.domain/Note/id/#/PointingToDeclaration/-to-do-turtle/note.domain/-note/id.html
 $dokka.location:note.domain/Note/title/#/PointingToDeclaration/-to-do-turtle/note.domain/-note/title.html
@@ -85,23 +85,19 @@ $dokka.location:note.domain/Note/toPrimitives/#/PointingToDeclaration/-to-do-tu
 $dokka.location:note.domain/NoteIdentifier///PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/index.html
 $dokka.location:note.domain/NoteIdentifier/NoteIdentifier/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/-note-identifier.html
 $dokka.location:note.domain/NoteIdentifier/toPrimitives/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier/to-primitives.html
-$dokka.location:note.domain/NoteIdentifierGenerator///PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier-generator/index.html
-$dokka.location:note.domain/NoteIdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-identifier-generator/generate.html
 $dokka.location:note.domain/NotePrimitives///PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/index.html
-$dokka.location:note.domain/NotePrimitives/NotePrimitives/#kotlin.String#kotlin.String?/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/-note-primitives.html
+$dokka.location:note.domain/NotePrimitives/NotePrimitives/#kotlin.String#kotlin.String#kotlin.String?/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/-note-primitives.html
 $dokka.location:note.domain/NotePrimitives/description/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/description.html
+$dokka.location:note.domain/NotePrimitives/hasSameContent/#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/has-same-content.html
+$dokka.location:note.domain/NotePrimitives/noteId/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/note-id.html
 $dokka.location:note.domain/NotePrimitives/title/#/PointingToDeclaration/-to-do-turtle/note.domain/-note-primitives/title.html
 $dokka.location:note.domain/NoteRepository///PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/index.html
-$dokka.location:note.domain/NoteRepository/delete/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/delete.html
+$dokka.location:note.domain/NoteRepository/delete/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/delete.html
 $dokka.location:note.domain/NoteRepository/save/#note.domain.Note/PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/save.html
-$dokka.location:note.domain/NoteRepository/search/#note.domain.NoteIdentifier/PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/search.html
+$dokka.location:note.domain/NoteRepository/search/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/note.domain/-note-repository/search.html
 $dokka.location:note.domain/Title///PointingToDeclaration/-to-do-turtle/note.domain/-title/index.html
 $dokka.location:note.domain/Title/Title/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.domain/-title/-title.html
 $dokka.location:note.domain/Title/title/#/PointingToDeclaration/-to-do-turtle/note.domain/-title/title.html
-$dokka.location:note.infra////PointingToDeclaration/-to-do-turtle/note.infra/index.html
-$dokka.location:note.infra/UuidV4NoteIdentifierGenerator///PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/index.html
-$dokka.location:note.infra/UuidV4NoteIdentifierGenerator/UuidV4NoteIdentifierGenerator/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/-uuid-v4-note-identifier-generator.html
-$dokka.location:note.infra/UuidV4NoteIdentifierGenerator/generate/#/PointingToDeclaration/-to-do-turtle/note.infra/-uuid-v4-note-identifier-generator/generate.html
 $dokka.location:notification.application////PointingToDeclaration/-to-do-turtle/notification.application/index.html
 $dokka.location:notification.application/NotificationGetter///PointingToDeclaration/-to-do-turtle/notification.application/-notification-getter/index.html
 $dokka.location:notification.application/NotificationGetter/NotificationGetter/#notification.domain.NotificationRepository/PointingToDeclaration/-to-do-turtle/notification.application/-notification-getter/-notification-getter.html
@@ -113,6 +109,8 @@ $dokka.location:notification.domain/Notification/id/#/PointingToDeclaration/-to
 $dokka.location:notification.domain/NotificationRepository///PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/index.html
 $dokka.location:notification.domain/NotificationRepository/get/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/get.html
 $dokka.location:shared.domain.exceptions////PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/index.html
+$dokka.location:shared.domain.exceptions/AlreadyUsedIdentifierException///PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-already-used-identifier-exception/index.html
+$dokka.location:shared.domain.exceptions/AlreadyUsedIdentifierException/AlreadyUsedIdentifierException/#/PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-already-used-identifier-exception/-already-used-identifier-exception.html
 $dokka.location:shared.domain.exceptions/InvalidUUIDException///PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/index.html
 $dokka.location:shared.domain.exceptions/InvalidUUIDException/InvalidUUIDException/#kotlin.String/PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/-invalid-u-u-i-d-exception.html
 $dokka.location:shared.domain.exceptions/InvalidUUIDException/message/#/PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-invalid-u-u-i-d-exception/message.html
@@ -133,7 +131,6 @@ device.domain.exceptions
 note.application
 note.domain
 note.domain.exceptions
-note.infra
 notification.application
 notification.domain
 shared.domain
