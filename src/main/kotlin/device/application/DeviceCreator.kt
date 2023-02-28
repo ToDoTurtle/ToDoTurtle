@@ -9,7 +9,7 @@ import device.domain.exceptions.IllegalDeviceNameException
 import device.domain.exceptions.InvalidUUIDException
 import shared.domain.Identifier
 
-class CreateDevice(private val repository: DeviceRepository) {
+class DeviceCreator(private val repository: DeviceRepository) {
 
     /***
      * Creates a new device from primitives and saves it to the DeviceRepository
@@ -28,8 +28,8 @@ class CreateDevice(private val repository: DeviceRepository) {
      */
 
     internal fun create(id: Identifier, name: DeviceName): Device {
-        val device = repository.get(id)?.let { throw AlreadyExistingDevice(id) } ?: Device(id, name)
-        repository.save(device)
+        val device = repository.search(id)?.let { throw AlreadyExistingDevice(id) } ?: Device(id, name)
+        repository.create(device)
         return device
     }
 }

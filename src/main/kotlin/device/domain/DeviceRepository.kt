@@ -3,6 +3,6 @@ package device.domain
 import shared.domain.Identifier
 
 interface DeviceRepository {
-    fun save(device: Device)
-    fun get(deviceId: Identifier): Device?
+    fun create(device: Device)
+    fun search(deviceId: Identifier): Device?
 }
