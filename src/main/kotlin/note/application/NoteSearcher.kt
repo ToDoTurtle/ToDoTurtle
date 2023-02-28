@@ -13,6 +13,6 @@ class NoteSearcher(
      * @see Note
      * @return null or a note instance if it exists
      */
-    fun search(identifier: Identifier) = repository.search(identifier)
-
+    fun search(identifier: String) = repository.search(Identifier(identifier))
+    internal fun search(identifier: Identifier) = repository.search(identifier)
 }

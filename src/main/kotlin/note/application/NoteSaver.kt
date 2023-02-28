@@ -24,13 +24,19 @@ class NoteSaver(
      * @return The saved note instance
      */
     fun save(note: NotePrimitives): Note {
-        val noteIdentifier = Identifier(note.noteId)
+        val noteId = Identifier(note.noteId)
+        val title = Title(note.title)
+        val description = note.description?.let { Description(it) }
+        return save(noteId, title, description)
+    }
+
+    internal fun save(noteId: Identifier, title: Title, description: Description?): Note {
         val newNote = Note(
-            id = noteIdentifier,
-            title = Title(note.title),
-            description = note.description?.let { Description(it) },
+            id = noteId,
+            title = title,
+            description = description,
         )
-        repository.search(noteIdentifier)?.let { throw AlreadyUsedIdentifierException() }
+        repository.search(noteId)?.let { throw AlreadyUsedIdentifierException() }
         repository.save(newNote)
         return newNote
     }
