@@ -1,7 +1,7 @@
 package device.domain.exceptions
 
-import device.domain.DeviceIdentifier
+import shared.domain.Identifier
 
-class AlreadyExistingDevice(identifier: DeviceIdentifier) : Exception() {
+class AlreadyExistingDevice(identifier: Identifier) : Exception() {
     override val message: String = "Device with identifier $identifier already exists."
 }

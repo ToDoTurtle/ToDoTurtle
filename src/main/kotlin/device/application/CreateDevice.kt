@@ -1,12 +1,13 @@
 package device.application
 
 import device.domain.Device
-import device.domain.DeviceIdentifier
 import device.domain.DeviceName
+import device.domain.DevicePrimitives
 import device.domain.DeviceRepository
 import device.domain.exceptions.AlreadyExistingDevice
 import device.domain.exceptions.IllegalDeviceNameException
 import device.domain.exceptions.InvalidUUIDException
+import shared.domain.Identifier
 
 class CreateDevice(private val repository: DeviceRepository) {
 
@@ -18,7 +19,7 @@ class CreateDevice(private val repository: DeviceRepository) {
      * @return The device instance that was saved inside the repository
      */
 
-    fun create(id: String, name: String) = create(DeviceIdentifier(id), DeviceName(name))
+    fun create(primitives: DevicePrimitives) = create(Identifier(primitives.id), DeviceName(primitives.name))
 
     /***
      * Creates a new device from domain objects and saves it to the DeviceRepository
@@ -26,7 +27,7 @@ class CreateDevice(private val repository: DeviceRepository) {
      * @return The device instance that was saved inside the repository
      */
 
-    internal fun create(id: DeviceIdentifier, name: DeviceName): Device {
+    internal fun create(id: Identifier, name: DeviceName): Device {
         val device = repository.get(id)?.let { throw AlreadyExistingDevice(id) } ?: Device(id, name)
         repository.save(device)
         return device

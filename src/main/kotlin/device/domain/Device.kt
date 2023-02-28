@@ -1,3 +1,7 @@
 package device.domain
 
-data class Device(val id: DeviceIdentifier, val name: DeviceName)
+import shared.domain.Identifier
+
+data class Device(val id: Identifier, val name: DeviceName) {
+    fun toPrimitives() = DevicePrimitives(id.id, name.name)
+}
