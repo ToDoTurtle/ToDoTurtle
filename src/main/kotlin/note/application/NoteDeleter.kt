@@ -1,7 +1,6 @@
 package note.application
 
 import note.domain.Note
-import note.domain.NoteIdentifier
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import shared.domain.Identifier
@@ -15,7 +14,8 @@ class NoteDeleter(
      * @throws NonExistentNoteException if the note does not exist or is not saved on the repository.
      * @see Note
      */
-    fun delete(noteId: Identifier) =
+    fun delete(noteId: String) = delete(Identifier(noteId))
+    internal fun delete(noteId: Identifier) =
         NoteSearcher(repository).search(noteId)?.let { repository.delete(it.id) }
             ?: throw NonExistentNoteException(noteId)
 }
