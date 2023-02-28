@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import shared.domain.IdentifierGenerator
+import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
 class DeviceSearcherTest {
@@ -23,8 +24,8 @@ class DeviceSearcherTest {
     @Test
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
         // Initialize
-        val identifier = DeviceMother.getValidDevice().id
-        val identifierPrimitive = DeviceMother.getValidDevice().toPrimitives().id
+        val identifier = IdentifierMother.getValidIdentifier()
+        val identifierPrimitive = IdentifierMother.getPrimitiveFrom(identifier)
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute
         val result = useCase.get(identifierPrimitive)
@@ -39,7 +40,7 @@ class DeviceSearcherTest {
         val device = DeviceMother.getValidDevice()
         Mockito.`when`(repository.search(device.id)).thenReturn(device)
         // Execute
-        val result = useCase.get(device.toPrimitives().id)
+        val result = useCase.get(DeviceMother.getIdPrimitiveFrom(device))
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(device.id)
         assertEquals(device, result)
