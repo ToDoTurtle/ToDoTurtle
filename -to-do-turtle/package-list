@@ -1,9 +1,9 @@
 $dokka.format:html-v1
 $dokka.linkExtension:html
 $dokka.location:deadline.application////PointingToDeclaration/-to-do-turtle/deadline.application/index.html
-$dokka.location:deadline.application/CreateDeadline///PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/index.html
-$dokka.location:deadline.application/CreateDeadline/CreateDeadline/#deadline.domain.DeadlineRepository/PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/-create-deadline.html
-$dokka.location:deadline.application/CreateDeadline/create/#deadline.application.DeadlinePrimitives/PointingToDeclaration/-to-do-turtle/deadline.application/-create-deadline/create.html
+$dokka.location:deadline.application/DeadlineCreator///PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-creator/index.html
+$dokka.location:deadline.application/DeadlineCreator/DeadlineCreator/#deadline.domain.DeadlineRepository/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-creator/-deadline-creator.html
+$dokka.location:deadline.application/DeadlineCreator/create/#deadline.application.DeadlinePrimitives/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-creator/create.html
 $dokka.location:deadline.application/DeadlinePrimitives///PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/index.html
 $dokka.location:deadline.application/DeadlinePrimitives/DeadlinePrimitives/#kotlin.String#kotlin.ULong/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/-deadline-primitives.html
 $dokka.location:deadline.application/DeadlinePrimitives/noteIdentifier/#/PointingToDeclaration/-to-do-turtle/deadline.application/-deadline-primitives/note-identifier.html
