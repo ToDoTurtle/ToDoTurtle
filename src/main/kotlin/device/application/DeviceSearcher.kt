@@ -4,7 +4,7 @@ import device.domain.Device
 import device.domain.DeviceRepository
 import shared.domain.Identifier
 
-class GetDevice(
+class DeviceSearcher(
     private val repository: DeviceRepository,
 ) {
     /***
@@ -12,6 +12,6 @@ class GetDevice(
      * @see Device
      * @return null or a device instance if it exists
      */
-    fun get(identifier: String) = repository.get(Identifier(identifier))
-    internal fun get(identifier: Identifier) = repository.get(identifier)
+    fun get(identifier: String) = repository.search(Identifier(identifier))
+    internal fun get(identifier: Identifier) = repository.search(identifier)
 }

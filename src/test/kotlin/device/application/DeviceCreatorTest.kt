@@ -14,15 +14,15 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 
-class CreateDeviceTest {
+class DeviceCreatorTest {
 
     private lateinit var repository: DeviceRepository
-    private lateinit var useCase: CreateDevice
+    private lateinit var useCase: DeviceCreator
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(DeviceRepository::class.java)
-        useCase = CreateDevice(repository)
+        useCase = DeviceCreator(repository)
     }
 
     @Test
@@ -46,22 +46,22 @@ class CreateDeviceTest {
     @Test
     fun `If a device is already created, AlreadyExistingDeviceException is thrown`() {
         val currentDevice = DeviceMother.getValidDevice()
-        Mockito.`when`(repository.get(currentDevice.id)).thenReturn(currentDevice)
+        Mockito.`when`(repository.search(currentDevice.id)).thenReturn(currentDevice)
 
         assertThrows<AlreadyExistingDevice> {
             useCase.create(currentDevice.toPrimitives())
         }
 
-        Mockito.verify(repository, Mockito.times(0)).save(currentDevice)
+        Mockito.verify(repository, Mockito.times(0)).create(currentDevice)
     }
 
     @Test
     fun `If a device is not created, save it to the repository`() {
         val currentDevice = DeviceMother.getValidDevice()
-        Mockito.`when`(repository.get(currentDevice.id)).thenReturn(null)
+        Mockito.`when`(repository.search(currentDevice.id)).thenReturn(null)
 
         useCase.create(currentDevice.toPrimitives())
 
-        Mockito.verify(repository, Mockito.times(1)).save(currentDevice)
+        Mockito.verify(repository, Mockito.times(1)).create(currentDevice)
     }
 }

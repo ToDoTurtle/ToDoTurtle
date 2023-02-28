@@ -9,27 +9,27 @@ import shared.domain.IdentifierGenerator
 import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
-class GetDeviceTest {
+class DeviceSearcherTest {
     private lateinit var generator: IdentifierGenerator
     private lateinit var repository: DeviceRepository
-    private lateinit var useCase: GetDevice
+    private lateinit var useCase: DeviceSearcher
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(DeviceRepository::class.java)
         generator = Mockito.mock(IdentifierGenerator::class.java)
-        useCase = GetDevice(repository)
+        useCase = DeviceSearcher(repository)
     }
 
     @Test
     fun `Nothing is returned when valid identifier doesn't exist in the repository`() {
         // Initialize
         val identifier = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.get(identifier)).thenReturn(null)
+        Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute
         val result = useCase.get(identifier)
         // Assert
-        Mockito.verify(repository, Mockito.times(1)).get(identifier)
+        Mockito.verify(repository, Mockito.times(1)).search(identifier)
         assertEquals(null, result)
     }
 
@@ -37,11 +37,11 @@ class GetDeviceTest {
     fun `Device is returned when identifier exists in the repository`() {
         // Initialize
         val device = DeviceMother.getValidDevice()
-        Mockito.`when`(repository.get(device.id)).thenReturn(device)
+        Mockito.`when`(repository.search(device.id)).thenReturn(device)
         // Execute
         val result = useCase.get(device.id)
         // Assert
-        Mockito.verify(repository, Mockito.times(1)).get(device.id)
+        Mockito.verify(repository, Mockito.times(1)).search(device.id)
         assertEquals(device, result)
     }
 }
