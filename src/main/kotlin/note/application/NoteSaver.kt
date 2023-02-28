@@ -30,7 +30,7 @@ class NoteSaver(
         return save(noteId, title, description)
     }
 
-    internal fun save(noteId: Identifier, title: Title, description: Description?): Note {
+    private fun save(noteId: Identifier, title: Title, description: Description?): Note {
         val newNote = Note(
             id = noteId,
             title = title,
