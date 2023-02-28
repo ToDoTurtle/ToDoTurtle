@@ -25,7 +25,7 @@ class NoteUpdater(
      */
     fun update(oldNoteIdentifier: String, newNote: NotePrimitives) = update(Identifier(oldNoteIdentifier), newNote)
 
-    internal fun update(oldNoteIdentifier: Identifier, newNote: NotePrimitives): Note {
+    private fun update(oldNoteIdentifier: Identifier, newNote: NotePrimitives): Note {
         assertUpdateConditions(oldNoteIdentifier, newNote)
         return updateNote(oldNoteId = oldNoteIdentifier, newNote = newNote)
     }
