@@ -12,5 +12,6 @@ class GetDevice(
      * @see Device
      * @return null or a device instance if it exists
      */
-    fun get(identifier: Identifier) = repository.get(identifier)
+    fun get(identifier: String) = repository.get(Identifier(identifier))
+    internal fun get(identifier: Identifier) = repository.get(identifier)
 }
