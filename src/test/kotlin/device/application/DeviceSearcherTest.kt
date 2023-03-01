@@ -28,7 +28,7 @@ class DeviceSearcherTest {
         val identifierPrimitive = IdentifierMother.getPrimitiveFrom(identifier)
         Mockito.`when`(repository.search(identifier)).thenReturn(null)
         // Execute
-        val result = useCase.get(identifierPrimitive)
+        val result = useCase.search(identifierPrimitive)
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(identifier)
         assertEquals(null, result)
@@ -40,7 +40,7 @@ class DeviceSearcherTest {
         val device = DeviceMother.getValidDevice()
         Mockito.`when`(repository.search(device.id)).thenReturn(device)
         // Execute
-        val result = useCase.get(DeviceMother.getIdPrimitiveFrom(device))
+        val result = useCase.search(DeviceMother.getIdPrimitiveFrom(device))
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(device.id)
         assertEquals(device, result)
