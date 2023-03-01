@@ -15,13 +15,13 @@ import kotlin.test.assertEquals
 
 class NoteSaverTest {
 
-    private lateinit var noteSaver: NoteSaver
+    private lateinit var noteSaver: NoteCreator
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        noteSaver = NoteSaver(repository)
+        noteSaver = NoteCreator(repository)
     }
 
     @Test
@@ -67,7 +67,7 @@ class NoteSaverTest {
     private fun `Assert that the note was saved to the repository given the primitives from`(note: Note) {
         val result = noteSaver.save(note.toPrimitives())
 
-        Mockito.verify(repository, Mockito.times(1)).save(note)
+        Mockito.verify(repository, Mockito.times(1)).create(note)
         assertEquals(note, result)
     }
 }
