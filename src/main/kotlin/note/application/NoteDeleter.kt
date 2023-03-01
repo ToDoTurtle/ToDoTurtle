@@ -15,7 +15,7 @@ class NoteDeleter(
      * @see Note
      */
     fun delete(noteId: String) = delete(Identifier(noteId))
-    internal fun delete(noteId: Identifier) =
+    private fun delete(noteId: Identifier) =
         NoteSearcher(repository).search(noteId)?.let { repository.delete(it.id) }
             ?: throw NonExistentNoteException(noteId)
 }
