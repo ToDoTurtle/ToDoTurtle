@@ -10,7 +10,7 @@ import shared.domain.Identifier
 import shared.domain.exceptions.AlreadyUsedIdentifierException
 import shared.domain.exceptions.InvalidUUIDException
 
-class NoteUpdater(
+class NoteChanger(
     private val repository: NoteRepository,
 ) {
     /***
@@ -23,9 +23,9 @@ class NoteUpdater(
      * @throws IllegalTitleException if the new title isn't valid
      * @return The new saved instance of Note
      */
-    fun update(oldNoteIdentifier: String, newNote: NotePrimitives) = update(Identifier(oldNoteIdentifier), newNote)
+    fun change(oldNoteIdentifier: String, newNote: NotePrimitives) = change(Identifier(oldNoteIdentifier), newNote)
 
-    private fun update(oldNoteIdentifier: Identifier, newNote: NotePrimitives): Note {
+    private fun change(oldNoteIdentifier: Identifier, newNote: NotePrimitives): Note {
         assertUpdateConditions(oldNoteIdentifier, newNote)
         return updateNote(oldNoteId = oldNoteIdentifier, newNote = newNote)
     }
@@ -36,8 +36,8 @@ class NoteUpdater(
     }
 
     private fun updateNote(oldNoteId: Identifier, newNote: NotePrimitives): Note {
-        val result = NoteSaver(repository).save(newNote)
-        repository.delete(oldNoteId)
+        val result = NoteCreator(repository).save(newNote)
+        repository.remove(oldNoteId)
         return result
     }
 }

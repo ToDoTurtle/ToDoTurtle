@@ -11,13 +11,13 @@ import org.mockito.Mockito
 import shared.mothers.IdentifierMother
 
 class NoteDeleterTest {
-    private lateinit var noteDeleter: NoteDeleter
+    private lateinit var noteDeleter: NoteRemover
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        noteDeleter = NoteDeleter(repository)
+        noteDeleter = NoteRemover(repository)
     }
 
     @Test
@@ -27,10 +27,10 @@ class NoteDeleterTest {
         Mockito.`when`(repository.search(id)).thenReturn(null)
 
         assertThrows<NonExistentNoteException> {
-            noteDeleter.delete(idPrimitive)
+            noteDeleter.remove(idPrimitive)
         }
 
-        Mockito.verify(repository, Mockito.times(0)).delete(id)
+        Mockito.verify(repository, Mockito.times(0)).remove(id)
     }
 
     @Test
@@ -40,9 +40,9 @@ class NoteDeleterTest {
         Mockito.`when`(repository.search(note.id)).thenReturn(note)
 
         assertDoesNotThrow {
-            noteDeleter.delete(idPrimitive)
+            noteDeleter.remove(idPrimitive)
         }
 
-        Mockito.verify(repository, Mockito.times(1)).delete(note.id)
+        Mockito.verify(repository, Mockito.times(1)).remove(note.id)
     }
 }

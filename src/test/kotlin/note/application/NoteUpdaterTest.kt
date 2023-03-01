@@ -14,7 +14,7 @@ import shared.domain.exceptions.AlreadyUsedIdentifierException
 import shared.mothers.IdentifierMother
 
 class NoteUpdaterTest {
-    private lateinit var noteUpdater: NoteUpdater
+    private lateinit var noteUpdater: NoteChanger
     private lateinit var repository: NoteRepository
 
     private lateinit var oldNote: Note
@@ -24,7 +24,7 @@ class NoteUpdaterTest {
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        noteUpdater = NoteUpdater(repository)
+        noteUpdater = NoteChanger(repository)
         oldNote = NoteMother.getValidNoteWithDescription()
         oldNoteId = NoteMother.getIdentifierFrom(oldNote)
         oldNoteIdPrimitive = IdentifierMother.getPrimitiveFrom(oldNoteId)
@@ -36,7 +36,7 @@ class NoteUpdaterTest {
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(null)
 
         assertThrows<NonExistentNoteException> {
-            noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
+            noteUpdater.change(oldNoteIdPrimitive, newNote.toPrimitives())
         }
     }
 
@@ -45,7 +45,7 @@ class NoteUpdaterTest {
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
         assertThrows<UnchangedNoteException> {
-            noteUpdater.update(oldNoteIdPrimitive, oldNote.toPrimitives())
+            noteUpdater.change(oldNoteIdPrimitive, oldNote.toPrimitives())
         }
     }
 
@@ -54,10 +54,10 @@ class NoteUpdaterTest {
         val newNote = NoteMother.getNoteWithDifferentTitleFrom(oldNote)
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
-        noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
+        noteUpdater.change(oldNoteIdPrimitive, newNote.toPrimitives())
 
-        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
-        Mockito.verify(repository, Mockito.times(1)).save(newNote)
+        Mockito.verify(repository, Mockito.times(1)).remove(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).create(newNote)
     }
 
     @Test
@@ -65,10 +65,10 @@ class NoteUpdaterTest {
         val newNote = NoteMother.getNoteWithDifferentDescriptionFrom(oldNote)
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
-        noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
+        noteUpdater.change(oldNoteIdPrimitive, newNote.toPrimitives())
 
-        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
-        Mockito.verify(repository, Mockito.times(1)).save(newNote)
+        Mockito.verify(repository, Mockito.times(1)).remove(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).create(newNote)
     }
 
     @Test
@@ -76,10 +76,10 @@ class NoteUpdaterTest {
         val newNote = NoteMother.getNoteWithDifferentDescriptionFrom(NoteMother.getNoteWithDifferentTitleFrom(oldNote))
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
-        noteUpdater.update(oldNoteIdPrimitive, newNote.toPrimitives())
+        noteUpdater.change(oldNoteIdPrimitive, newNote.toPrimitives())
 
-        Mockito.verify(repository, Mockito.times(1)).delete(oldNoteId)
-        Mockito.verify(repository, Mockito.times(1)).save(newNote)
+        Mockito.verify(repository, Mockito.times(1)).remove(oldNoteId)
+        Mockito.verify(repository, Mockito.times(1)).create(newNote)
     }
 
     @Test
@@ -88,9 +88,9 @@ class NoteUpdaterTest {
         val newNotePrimitives = newNote.toPrimitives().copy(noteId = oldNoteIdPrimitive)
         Mockito.`when`(repository.search(oldNoteId)).thenReturn(oldNote)
 
-        assertThrows<AlreadyUsedIdentifierException> { noteUpdater.update(oldNoteIdPrimitive, newNotePrimitives) }
+        assertThrows<AlreadyUsedIdentifierException> { noteUpdater.change(oldNoteIdPrimitive, newNotePrimitives) }
 
-        Mockito.verify(repository, Mockito.times(0)).delete(oldNoteId)
-        Mockito.verify(repository, Mockito.times(0)).save(newNote)
+        Mockito.verify(repository, Mockito.times(0)).remove(oldNoteId)
+        Mockito.verify(repository, Mockito.times(0)).create(newNote)
     }
 }

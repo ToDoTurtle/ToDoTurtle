@@ -10,7 +10,7 @@ import shared.domain.Identifier
 import shared.domain.exceptions.AlreadyUsedIdentifierException
 import shared.domain.exceptions.InvalidUUIDException
 
-class NoteSaver(
+class NoteCreator(
     private val repository: NoteRepository,
 ) {
 
@@ -37,7 +37,7 @@ class NoteSaver(
             description = description,
         )
         repository.search(noteId)?.let { throw AlreadyUsedIdentifierException() }
-        repository.save(newNote)
+        repository.create(newNote)
         return newNote
     }
 }
