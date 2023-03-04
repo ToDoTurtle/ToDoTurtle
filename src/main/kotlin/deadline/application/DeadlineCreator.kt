@@ -17,11 +17,11 @@ class DeadlineCreator(private val repository: DeadlineRepository) {
      */
     fun create(primitives: DeadlinePrimitives) = create(Identifier(primitives.noteIdentifier), Time(primitives.time))
 
-    private fun create(noteId: Identifier, time: Time) = save(Deadline(noteId, time))
+    private fun create(noteId: Identifier, time: Time) = create(Deadline(noteId, time))
 
-    private fun save(deadline: Deadline): Deadline {
-        repository.get(deadline.noteId)?.let { throw AlreadyConfiguredDeadline() }
-        repository.save(deadline)
+    private fun create(deadline: Deadline): Deadline {
+        repository.search(deadline.noteId)?.let { throw AlreadyConfiguredDeadline() }
+        repository.create(deadline)
         return deadline
     }
 }
