@@ -36,7 +36,7 @@ class NoteChanger(
     }
 
     private fun updateNote(oldNoteId: Identifier, newNote: NotePrimitives): Note {
-        val result = NoteCreator(repository).save(newNote)
+        val result = NoteCreator(repository).create(newNote)
         repository.remove(oldNoteId)
         return result
     }

@@ -23,14 +23,14 @@ class NoteCreator(
      * @see Note
      * @return The saved note instance
      */
-    fun save(note: NotePrimitives): Note {
+    fun create(note: NotePrimitives): Note {
         val noteId = Identifier(note.noteId)
         val title = Title(note.title)
         val description = note.description?.let { Description(it) }
-        return save(noteId, title, description)
+        return create(noteId, title, description)
     }
 
-    private fun save(noteId: Identifier, title: Title, description: Description?): Note {
+    private fun create(noteId: Identifier, title: Title, description: Description?): Note {
         val newNote = Note(
             id = noteId,
             title = title,

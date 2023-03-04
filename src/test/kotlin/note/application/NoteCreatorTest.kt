@@ -13,15 +13,15 @@ import shared.domain.exceptions.InvalidUUIDException
 import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
-class NoteSaverTest {
+class NoteCreatorTest {
 
-    private lateinit var noteSaver: NoteCreator
+    private lateinit var noteCreator: NoteCreator
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        noteSaver = NoteCreator(repository)
+        noteCreator = NoteCreator(repository)
     }
 
     @Test
@@ -29,7 +29,7 @@ class NoteSaverTest {
         val notePrimitives = NoteMother.getValidNoteWithDescription().toPrimitives()
         val invalidTitlePrimitives = notePrimitives.copy(title = "")
         assertThrows<IllegalTitleException> {
-            noteSaver.save(invalidTitlePrimitives)
+            noteCreator.create(invalidTitlePrimitives)
         }
     }
 
@@ -38,7 +38,7 @@ class NoteSaverTest {
         val note = NoteMother.getValidNoteWithDescription().toPrimitives()
         val invalidIdPrimitive = note.copy(noteId = IdentifierMother.invalidPrimitiveIdentifier)
         assertThrows<InvalidUUIDException> {
-            noteSaver.save(invalidIdPrimitive)
+            noteCreator.create(invalidIdPrimitive)
         }
     }
 
@@ -48,7 +48,7 @@ class NoteSaverTest {
         val noteId = NoteMother.getIdentifierFrom(note)
         Mockito.`when`(repository.search(noteId)).thenReturn(note)
         assertThrows<AlreadyUsedIdentifierException> {
-            noteSaver.save(note.toPrimitives())
+            noteCreator.create(note.toPrimitives())
         }
     }
 
@@ -65,7 +65,7 @@ class NoteSaverTest {
     }
 
     private fun `Assert that the note was saved to the repository given the primitives from`(note: Note) {
-        val result = noteSaver.save(note.toPrimitives())
+        val result = noteCreator.create(note.toPrimitives())
 
         Mockito.verify(repository, Mockito.times(1)).create(note)
         assertEquals(note, result)
