@@ -10,8 +10,8 @@ import shared.domain.IdentifierGenerator
 import shared.mothers.IdentifierMother
 import kotlin.test.assertEquals
 
-class NotificationGetterTest {
-    private lateinit var notificationGetter: NotificationSearcher
+class NotificationSearcherTest {
+    private lateinit var notificationSearcher: NotificationSearcher
     private lateinit var generator: IdentifierGenerator
     private lateinit var repository: NotificationRepository
 
@@ -19,7 +19,7 @@ class NotificationGetterTest {
     fun setUp() {
         repository = Mockito.mock(NotificationRepository::class.java)
         generator = Mockito.mock(IdentifierGenerator::class.java)
-        notificationGetter = NotificationSearcher(repository)
+        notificationSearcher = NotificationSearcher(repository)
     }
 
     @Test
@@ -27,7 +27,7 @@ class NotificationGetterTest {
         val noteId = IdentifierMother.getValidIdentifier()
         Mockito.`when`(repository.search(noteId)).thenReturn(emptyList<Notification>())
 
-        val result = notificationGetter.search(IdentifierMother.getPrimitiveFrom(noteId))
+        val result = notificationSearcher.search(IdentifierMother.getPrimitiveFrom(noteId))
 
         Mockito.verify(repository, Mockito.times(1)).search(noteId)
         assertEquals(emptyList<Notification>(), result)
@@ -39,7 +39,7 @@ class NotificationGetterTest {
         val noteId = NotificationMother.getNoteIdFrom(notification)
         Mockito.`when`(repository.search(noteId)).thenReturn(listOf(notification))
 
-        val result = notificationGetter.search(NotificationMother.getNoteIdPrimitiveFrom(notification))
+        val result = notificationSearcher.search(NotificationMother.getNoteIdPrimitiveFrom(notification))
 
         Mockito.verify(repository, Mockito.times(1)).search(noteId)
         assertEquals(listOf(notification), result)
@@ -51,7 +51,7 @@ class NotificationGetterTest {
         val noteId = NotificationMother.getNoteIdFrom(notifications.first())
         Mockito.`when`(repository.search(noteId)).thenReturn(notifications)
 
-        val result = notificationGetter.search(NotificationMother.getNoteIdPrimitiveFrom(notifications.first()))
+        val result = notificationSearcher.search(NotificationMother.getNoteIdPrimitiveFrom(notifications.first()))
 
         Mockito.verify(repository, Mockito.times(1)).search(noteId)
         assertEquals(notifications, result)
