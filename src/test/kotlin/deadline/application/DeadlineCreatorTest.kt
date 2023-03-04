@@ -26,7 +26,7 @@ class DeadlineCreatorTest {
         val noteIdentifier = DeadlineMother.getNoteIdentifierFromDeadline(currentDeadline)
         val deadlinePrimitive = DeadlineMother.getPrimitivesFrom(currentDeadline)
 
-        Mockito.`when`(repository.get(noteIdentifier)).thenReturn(currentDeadline)
+        Mockito.`when`(repository.search(noteIdentifier)).thenReturn(currentDeadline)
 
         assertThrows<AlreadyConfiguredDeadline> { useCase.create(deadlinePrimitive) }
     }
@@ -37,10 +37,10 @@ class DeadlineCreatorTest {
         val noteIdentifier = DeadlineMother.getNoteIdentifierFromDeadline(deadline)
         val deadlinePrimitive = DeadlineMother.getPrimitivesFrom(deadline)
 
-        Mockito.`when`(repository.get(noteIdentifier)).thenReturn(null)
+        Mockito.`when`(repository.search(noteIdentifier)).thenReturn(null)
         val resultingDeadline = useCase.create(deadlinePrimitive)
 
         assertEquals(deadline, resultingDeadline)
-        Mockito.verify(repository, Mockito.times(1)).save(deadline)
+        Mockito.verify(repository, Mockito.times(1)).create(deadline)
     }
 }
