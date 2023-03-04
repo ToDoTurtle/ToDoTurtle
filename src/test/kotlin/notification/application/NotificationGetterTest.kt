@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import shared.domain.IdentifierGenerator
 import shared.mothers.IdentifierMother
-import java.util.*
 import kotlin.test.assertEquals
 
 class NotificationGetterTest {
@@ -26,12 +25,12 @@ class NotificationGetterTest {
     @Test
     fun `If there are no notifications for the given note identifier, return empty collection`() {
         val noteId = IdentifierMother.getValidIdentifier()
-        Mockito.`when`(repository.search(noteId)).thenReturn(Collections.emptyList<Notification>())
+        Mockito.`when`(repository.search(noteId)).thenReturn(emptyList<Notification>())
 
         val result = notificationGetter.search(IdentifierMother.getPrimitiveFrom(noteId))
 
         Mockito.verify(repository, Mockito.times(1)).search(noteId)
-        assertEquals(Collections.emptyList<Notification>(), result)
+        assertEquals(emptyList<Notification>(), result)
     }
 
     @Test
