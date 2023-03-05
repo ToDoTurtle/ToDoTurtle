@@ -17,8 +17,8 @@ $dokka.location:deadline.domain/Deadline/Deadline/#shared.domain.Identifier#dead
 $dokka.location:deadline.domain/Deadline/noteId/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/note-id.html
 $dokka.location:deadline.domain/Deadline/time/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline/time.html
 $dokka.location:deadline.domain/DeadlineRepository///PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/index.html
-$dokka.location:deadline.domain/DeadlineRepository/get/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/get.html
-$dokka.location:deadline.domain/DeadlineRepository/save/#deadline.domain.Deadline/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/save.html
+$dokka.location:deadline.domain/DeadlineRepository/create/#deadline.domain.Deadline/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/create.html
+$dokka.location:deadline.domain/DeadlineRepository/search/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/deadline.domain/-deadline-repository/search.html
 $dokka.location:deadline.domain/Time///PointingToDeclaration/-to-do-turtle/deadline.domain/-time/index.html
 $dokka.location:deadline.domain/Time/Time/#kotlin.ULong/PointingToDeclaration/-to-do-turtle/deadline.domain/-time/-time.html
 $dokka.location:deadline.domain/Time/time/#/PointingToDeclaration/-to-do-turtle/deadline.domain/-time/time.html
@@ -64,7 +64,7 @@ $dokka.location:note.application/NoteChanger/NoteChanger/#note.domain.NoteReposi
 $dokka.location:note.application/NoteChanger/change/#kotlin.String#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.application/-note-changer/change.html
 $dokka.location:note.application/NoteCreator///PointingToDeclaration/-to-do-turtle/note.application/-note-creator/index.html
 $dokka.location:note.application/NoteCreator/NoteCreator/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-creator/-note-creator.html
-$dokka.location:note.application/NoteCreator/save/#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.application/-note-creator/save.html
+$dokka.location:note.application/NoteCreator/create/#note.domain.NotePrimitives/PointingToDeclaration/-to-do-turtle/note.application/-note-creator/create.html
 $dokka.location:note.application/NoteRemover///PointingToDeclaration/-to-do-turtle/note.application/-note-remover/index.html
 $dokka.location:note.application/NoteRemover/NoteRemover/#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/note.application/-note-remover/-note-remover.html
 $dokka.location:note.application/NoteRemover/remove/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.application/-note-remover/remove.html
