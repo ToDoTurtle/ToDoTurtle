@@ -1,7 +1,6 @@
 package note.mothers
 
 import note.domain.Note
-import shared.domain.Identifier
 import shared.mothers.IdentifierMother
 
 object NoteMother {
@@ -30,9 +29,5 @@ object NoteMother {
 
     fun getIdentifierFrom(note: Note) = note.id
 
-    fun getValidNoteFromIdentifier(identifier: Identifier) = Note(
-        id = identifier,
-        title = TitleMother.getValidTitle(),
-        description = DescriptionMother.getValidDescription(),
-    )
+    fun getValidNote() = getValidNoteWithDescription()
 }

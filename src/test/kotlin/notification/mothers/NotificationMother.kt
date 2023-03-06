@@ -1,6 +1,8 @@
 package notification.mothers
 
 import deadline.mothers.TimeMother
+import note.domain.Note
+import note.mothers.NoteMother
 import notification.application.NotificationPrimitives
 import notification.domain.Notification
 import shared.mothers.IdentifierMother
@@ -29,5 +31,6 @@ object NotificationMother {
         time = TimeMother.getPrimitiveFrom(notification.time)
     )
 
-    fun getNoteIdentifierFrom(notification: Notification) = notification.noteId
+    fun getValidNotificationFor(note: Note) =
+        Notification(noteId = NoteMother.getIdentifierFrom(note), time = TimeMother.getValidTime())
 }

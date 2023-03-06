@@ -1,7 +1,6 @@
 package notification.application
 
 import deadline.domain.Time
-import note.application.NoteSearcher
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import notification.domain.Notification
@@ -12,7 +11,7 @@ import shared.domain.exceptions.InvalidUUIDException
 
 class NotificationCreator(
     private val repository: NotificationRepository,
-    private val noteSearcher: NoteRepository
+    private val noteRepository: NoteRepository
 ) {
 
     /***
@@ -27,7 +26,7 @@ class NotificationCreator(
     private fun create(noteId: Identifier, time: Time) = create(Notification(noteId, time))
 
     private fun create(notification: Notification): Notification {
-        noteSearcher.search(notification.noteId) ?: throw NonExistentNoteException(notification.noteId)
+        noteRepository.search(notification.noteId) ?: throw NonExistentNoteException(notification.noteId)
         if (repository.search(notification.noteId).any { it == notification })
             throw AlreadyConfiguredNotification()
         repository.create(notification)

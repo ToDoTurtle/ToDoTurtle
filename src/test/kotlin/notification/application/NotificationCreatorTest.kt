@@ -16,14 +16,14 @@ import kotlin.test.assertEquals
 class NotificationCreatorTest {
 
     private lateinit var notificationRepository: NotificationRepository
-    private lateinit var noteSearcher: NoteRepository
+    private lateinit var noteRepository: NoteRepository
     private lateinit var notificationCreator: NotificationCreator
 
     @BeforeEach
     fun `Set Up`() {
         notificationRepository = Mockito.mock(NotificationRepository::class.java)
-        noteSearcher = Mockito.mock(NoteRepository::class.java)
-        notificationCreator = NotificationCreator(notificationRepository, noteSearcher)
+        noteRepository = Mockito.mock(NoteRepository::class.java)
+        notificationCreator = NotificationCreator(notificationRepository, noteRepository)
     }
 
     @Test
@@ -31,18 +31,19 @@ class NotificationCreatorTest {
         val notification = NotificationMother.getValidNotification()
         val notificationPrimitives = NotificationMother.getPrimitivesFrom(notification)
 
-        Mockito.`when`(noteSearcher.search(NotificationMother.getNoteIdFrom(notification))).thenReturn(null)
+        Mockito.`when`(noteRepository.search(NotificationMother.getNoteIdFrom(notification))).thenReturn(null)
 
         assertThrows<NonExistentNoteException> { notificationCreator.create(notificationPrimitives) }
     }
 
     @Test
     fun `If a notification is already configured for the given time, throw an exception`() {
-        val notification = NotificationMother.getValidNotification()
-        val noteId = NotificationMother.getNoteIdentifierFrom(notification)
+        val note = NoteMother.getValidNote()
+        val noteId = NoteMother.getIdentifierFrom(note)
+        val notification = NotificationMother.getValidNotificationFor(note)
         val notificationPrimitives = NotificationMother.getPrimitivesFrom(notification)
 
-        Mockito.`when`(noteSearcher.search(noteId)).thenReturn(NoteMother.getValidNoteFromIdentifier(noteId))
+        Mockito.`when`(noteRepository.search(noteId)).thenReturn(note)
         Mockito.`when`(notificationRepository.search(noteId)).thenReturn(listOf(notification))
 
         assertThrows<AlreadyConfiguredNotification> { notificationCreator.create(notificationPrimitives) }
@@ -50,11 +51,12 @@ class NotificationCreatorTest {
 
     @Test
     fun `If a notification is not configured for the given time, save it to the repository`() {
-        val notification = NotificationMother.getValidNotification()
-        val noteId = NotificationMother.getNoteIdentifierFrom(notification)
+        val note = NoteMother.getValidNote()
+        val noteId = NoteMother.getIdentifierFrom(note)
+        val notification = NotificationMother.getValidNotificationFor(note)
         val notificationPrimitives = NotificationMother.getPrimitivesFrom(notification)
 
-        Mockito.`when`(noteSearcher.search(noteId)).thenReturn(NoteMother.getValidNoteFromIdentifier(noteId))
+        Mockito.`when`(noteRepository.search(noteId)).thenReturn(note)
         Mockito.`when`(notificationRepository.search(noteId)).thenReturn(emptyList<Notification>())
         val result = notificationCreator.create(notificationPrimitives)
 
