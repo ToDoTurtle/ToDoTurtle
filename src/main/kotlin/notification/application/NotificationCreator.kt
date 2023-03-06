@@ -2,6 +2,7 @@ package notification.application
 
 import deadline.domain.Time
 import note.application.NoteSearcher
+import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import notification.domain.Notification
 import notification.domain.NotificationRepository
@@ -11,7 +12,7 @@ import shared.domain.exceptions.InvalidUUIDException
 
 class NotificationCreator(
     private val repository: NotificationRepository,
-    private val noteSearcher: NoteSearcher
+    private val noteSearcher: NoteRepository
 ) {
 
     /***

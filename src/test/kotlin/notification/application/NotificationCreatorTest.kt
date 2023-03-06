@@ -1,6 +1,6 @@
 package notification.application
 
-import note.application.NoteSearcher
+import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
 import note.mothers.NoteMother
 import notification.domain.Notification
@@ -16,13 +16,13 @@ import kotlin.test.assertEquals
 class NotificationCreatorTest {
 
     private lateinit var notificationRepository: NotificationRepository
-    private lateinit var noteSearcher: NoteSearcher
+    private lateinit var noteSearcher: NoteRepository
     private lateinit var notificationCreator: NotificationCreator
 
     @BeforeEach
     fun `Set Up`() {
         notificationRepository = Mockito.mock(NotificationRepository::class.java)
-        noteSearcher = Mockito.mock(NoteSearcher::class.java)
+        noteSearcher = Mockito.mock(NoteRepository::class.java)
         notificationCreator = NotificationCreator(notificationRepository, noteSearcher)
     }
 
