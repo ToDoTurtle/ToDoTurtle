@@ -5,7 +5,6 @@ import note.domain.exceptions.NonExistentNoteException
 import note.mothers.NoteMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import shared.mothers.IdentifierMother
@@ -39,9 +38,7 @@ class NoteDeleterTest {
         val idPrimitive = IdentifierMother.getPrimitiveFrom(note.id)
         Mockito.`when`(repository.search(note.id)).thenReturn(note)
 
-        assertDoesNotThrow {
-            noteDeleter.remove(idPrimitive)
-        }
+        noteDeleter.remove(idPrimitive)
 
         Mockito.verify(repository, Mockito.times(1)).remove(note.id)
     }
