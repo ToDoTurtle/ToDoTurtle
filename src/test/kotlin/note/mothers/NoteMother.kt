@@ -28,4 +28,6 @@ object NoteMother {
     }
 
     fun getIdentifierFrom(note: Note) = note.id
+
+    fun getValidNote() = getValidNoteWithDescription()
 }
