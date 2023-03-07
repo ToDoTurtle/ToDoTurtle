@@ -114,14 +114,26 @@ $dokka.location:note.domain/Title///PointingToDeclaration/-to-do-turtle/note.do
 $dokka.location:note.domain/Title/Title/#kotlin.String/PointingToDeclaration/-to-do-turtle/note.domain/-title/-title.html
 $dokka.location:note.domain/Title/title/#/PointingToDeclaration/-to-do-turtle/note.domain/-title/title.html
 $dokka.location:notification.application////PointingToDeclaration/-to-do-turtle/notification.application/index.html
+$dokka.location:notification.application/NotificationCreator///PointingToDeclaration/-to-do-turtle/notification.application/-notification-creator/index.html
+$dokka.location:notification.application/NotificationCreator/NotificationCreator/#notification.domain.NotificationRepository#note.domain.NoteRepository/PointingToDeclaration/-to-do-turtle/notification.application/-notification-creator/-notification-creator.html
+$dokka.location:notification.application/NotificationCreator/create/#notification.application.NotificationPrimitives/PointingToDeclaration/-to-do-turtle/notification.application/-notification-creator/create.html
+$dokka.location:notification.application/NotificationPrimitives///PointingToDeclaration/-to-do-turtle/notification.application/-notification-primitives/index.html
+$dokka.location:notification.application/NotificationPrimitives/NotificationPrimitives/#kotlin.String#kotlin.ULong/PointingToDeclaration/-to-do-turtle/notification.application/-notification-primitives/-notification-primitives.html
+$dokka.location:notification.application/NotificationPrimitives/noteId/#/PointingToDeclaration/-to-do-turtle/notification.application/-notification-primitives/note-id.html
+$dokka.location:notification.application/NotificationPrimitives/time/#/PointingToDeclaration/-to-do-turtle/notification.application/-notification-primitives/time.html
 $dokka.location:notification.application/NotificationSearcher///PointingToDeclaration/-to-do-turtle/notification.application/-notification-searcher/index.html
 $dokka.location:notification.application/NotificationSearcher/NotificationSearcher/#notification.domain.NotificationRepository/PointingToDeclaration/-to-do-turtle/notification.application/-notification-searcher/-notification-searcher.html
 $dokka.location:notification.application/NotificationSearcher/search/#kotlin.String/PointingToDeclaration/-to-do-turtle/notification.application/-notification-searcher/search.html
+$dokka.location:notification.domain.exceptions////PointingToDeclaration/-to-do-turtle/notification.domain.exceptions/index.html
+$dokka.location:notification.domain.exceptions/AlreadyConfiguredNotification///PointingToDeclaration/-to-do-turtle/notification.domain.exceptions/-already-configured-notification/index.html
+$dokka.location:notification.domain.exceptions/AlreadyConfiguredNotification/AlreadyConfiguredNotification/#/PointingToDeclaration/-to-do-turtle/notification.domain.exceptions/-already-configured-notification/-already-configured-notification.html
 $dokka.location:notification.domain////PointingToDeclaration/-to-do-turtle/notification.domain/index.html
 $dokka.location:notification.domain/Notification///PointingToDeclaration/-to-do-turtle/notification.domain/-notification/index.html
-$dokka.location:notification.domain/Notification/Notification/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/-notification.html
+$dokka.location:notification.domain/Notification/Notification/#shared.domain.Identifier#deadline.domain.Time/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/-notification.html
 $dokka.location:notification.domain/Notification/noteId/#/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/note-id.html
+$dokka.location:notification.domain/Notification/time/#/PointingToDeclaration/-to-do-turtle/notification.domain/-notification/time.html
 $dokka.location:notification.domain/NotificationRepository///PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/index.html
+$dokka.location:notification.domain/NotificationRepository/create/#notification.domain.Notification/PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/create.html
 $dokka.location:notification.domain/NotificationRepository/search/#shared.domain.Identifier/PointingToDeclaration/-to-do-turtle/notification.domain/-notification-repository/search.html
 $dokka.location:shared.domain.exceptions////PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/index.html
 $dokka.location:shared.domain.exceptions/AlreadyUsedIdentifierException///PointingToDeclaration/-to-do-turtle/shared.domain.exceptions/-already-used-identifier-exception/index.html
@@ -148,6 +160,7 @@ note.domain
 note.domain.exceptions
 notification.application
 notification.domain
+notification.domain.exceptions
 shared.domain
 shared.domain.exceptions
 
