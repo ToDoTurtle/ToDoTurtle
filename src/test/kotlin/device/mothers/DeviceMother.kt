@@ -8,6 +8,11 @@ object DeviceMother {
         id = IdentifierMother.getValidIdentifier(),
         name = DeviceNameMother.getValidDeviceName(),
     )
-    fun getIdPrimitiveFrom(device: Device) = device.id.id
-    fun getNamePrimitiveFrom(device: Device) = device.name.name
+
+    fun getDeviceWithDifferentNameFrom(device: Device) = device.copy(
+        id = IdentifierMother.getDifferentValidIdentifier(device.id),
+        name = DeviceNameMother.getDifferentDeviceNameFrom(device.name),
+    )
+
+    fun getIdentifierFrom(device: Device) = device.id
 }

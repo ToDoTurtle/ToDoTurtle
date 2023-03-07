@@ -7,4 +7,5 @@ object DeviceNameMother {
     private const val BLANK_PRIMITIVE_DEVICE_NAME = " "
     fun getValidDeviceName() = DeviceName(PRIMITIVE_DEVICE_NAME)
     fun getBlankDeviceNamePrimitive() = BLANK_PRIMITIVE_DEVICE_NAME
+    fun getDifferentDeviceNameFrom(deviceName: DeviceName) = DeviceName(deviceName.name + " junk ")
 }

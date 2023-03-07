@@ -38,9 +38,12 @@ class DeviceSearcherTest {
     fun `Device is returned when identifier exists in the repository`() {
         // Initialize
         val device = DeviceMother.getValidDevice()
+        val deviceIdentifier = DeviceMother.getIdentifierFrom(device)
+        val deviceIdentifierPrimitive = IdentifierMother.getPrimitiveFrom(deviceIdentifier)
+
         Mockito.`when`(repository.search(device.id)).thenReturn(device)
         // Execute
-        val result = useCase.search(DeviceMother.getIdPrimitiveFrom(device))
+        val result = useCase.search(deviceIdentifierPrimitive)
         // Assert
         Mockito.verify(repository, Mockito.times(1)).search(device.id)
         assertEquals(device, result)

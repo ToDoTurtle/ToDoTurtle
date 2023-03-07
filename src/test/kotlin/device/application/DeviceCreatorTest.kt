@@ -1,18 +1,18 @@
 package device.application
 
-import device.domain.DeviceIdentifier
 import device.domain.DeviceName
 import device.domain.DeviceRepository
-import device.domain.exceptions.AlreadyExistingDevice
 import device.domain.exceptions.IllegalDeviceNameException
-import device.domain.exceptions.InvalidUUIDException
-import device.mothers.DeviceIdentifierMother
 import device.mothers.DeviceMother
 import device.mothers.DeviceNameMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
+import shared.domain.Identifier
+import shared.domain.exceptions.AlreadyUsedIdentifierException
+import shared.domain.exceptions.InvalidUUIDException
+import shared.mothers.IdentifierMother
 
 class DeviceCreatorTest {
 
@@ -27,10 +27,10 @@ class DeviceCreatorTest {
 
     @Test
     fun `If trying to create a device with invalid id, InvalidUUIDException is thrown`() {
-        val invalidId = DeviceIdentifierMother.getInvalidIdentifierPrimitive()
+        val invalidIdPrimitive = IdentifierMother.getInvalidIdentifierPrimitive()
 
         assertThrows<InvalidUUIDException> {
-            DeviceIdentifier(invalidId)
+            Identifier(invalidIdPrimitive)
         }
     }
 
@@ -48,7 +48,7 @@ class DeviceCreatorTest {
         val currentDevice = DeviceMother.getValidDevice()
         Mockito.`when`(repository.search(currentDevice.id)).thenReturn(currentDevice)
 
-        assertThrows<AlreadyExistingDevice> {
+        assertThrows<AlreadyUsedIdentifierException> {
             useCase.create(currentDevice.toPrimitives())
         }
 
