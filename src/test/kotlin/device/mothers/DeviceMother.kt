@@ -9,7 +9,7 @@ object DeviceMother {
         name = DeviceNameMother.getValidDeviceName(),
     )
 
-    fun getDeviceWithDifferentNameFrom(device: Device) = device.copy(
+    fun getDeviceWithDifferentNameFrom(device: Device) = Device(
         id = IdentifierMother.getDifferentValidIdentifier(device.id),
         name = DeviceNameMother.getDifferentDeviceNameFrom(device.name),
     )
