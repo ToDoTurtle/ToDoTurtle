@@ -2,9 +2,9 @@ package device.application
 
 import device.domain.Device
 import device.domain.DeviceRepository
-import device.domain.exceptions.InvalidUUIDException
 import device.domain.exceptions.NonExistentDeviceException
 import shared.domain.Identifier
+import shared.domain.exceptions.InvalidUUIDException
 
 class DeviceRemover(
     private val repository: DeviceRepository,

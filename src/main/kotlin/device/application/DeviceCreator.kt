@@ -6,8 +6,9 @@ import device.domain.DevicePrimitives
 import device.domain.DeviceRepository
 import device.domain.exceptions.AlreadyExistingDevice
 import device.domain.exceptions.IllegalDeviceNameException
-import device.domain.exceptions.InvalidUUIDException
 import shared.domain.Identifier
+import shared.domain.exceptions.AlreadyUsedIdentifierException
+import shared.domain.exceptions.InvalidUUIDException
 
 class DeviceCreator(private val repository: DeviceRepository) {
 
@@ -28,7 +29,7 @@ class DeviceCreator(private val repository: DeviceRepository) {
      */
 
     internal fun create(id: Identifier, name: DeviceName): Device {
-        val device = repository.search(id)?.let { throw AlreadyExistingDevice(id) } ?: Device(id, name)
+        val device = repository.search(id)?.let { throw AlreadyUsedIdentifierException() } ?: Device(id, name)
         repository.create(device)
         return device
     }
