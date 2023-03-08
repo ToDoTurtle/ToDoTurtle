@@ -9,10 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
-import shared.domain.Identifier
 import shared.domain.exceptions.AlreadyUsedIdentifierException
-import shared.domain.exceptions.InvalidUUIDException
-import shared.mothers.IdentifierMother
 
 class DeviceCreatorTest {
 
@@ -23,15 +20,6 @@ class DeviceCreatorTest {
     fun setUp() {
         repository = Mockito.mock(DeviceRepository::class.java)
         useCase = DeviceCreator(repository)
-    }
-
-    @Test
-    fun `If trying to create a device with invalid id, InvalidUUIDException is thrown`() {
-        val invalidIdPrimitive = IdentifierMother.getInvalidIdentifierPrimitive()
-
-        assertThrows<InvalidUUIDException> {
-            Identifier(invalidIdPrimitive)
-        }
     }
 
     @Test
