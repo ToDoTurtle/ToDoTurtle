@@ -9,14 +9,14 @@ import org.junit.jupiter.api.assertThrows
 import org.mockito.Mockito
 import shared.mothers.IdentifierMother
 
-class NoteDeleterTest {
-    private lateinit var noteDeleter: NoteRemover
+class NoteRemoverTest {
+    private lateinit var noteRemover: NoteRemover
     private lateinit var repository: NoteRepository
 
     @BeforeEach
     fun setUp() {
         repository = Mockito.mock(NoteRepository::class.java)
-        noteDeleter = NoteRemover(repository)
+        noteRemover = NoteRemover(repository)
     }
 
     @Test
@@ -26,7 +26,7 @@ class NoteDeleterTest {
         Mockito.`when`(repository.search(id)).thenReturn(null)
 
         assertThrows<NonExistentNoteException> {
-            noteDeleter.remove(idPrimitive)
+            noteRemover.remove(idPrimitive)
         }
 
         Mockito.verify(repository, Mockito.times(0)).remove(id)
@@ -38,7 +38,7 @@ class NoteDeleterTest {
         val idPrimitive = IdentifierMother.getPrimitiveFrom(note.id)
         Mockito.`when`(repository.search(note.id)).thenReturn(note)
 
-        noteDeleter.remove(idPrimitive)
+        noteRemover.remove(idPrimitive)
 
         Mockito.verify(repository, Mockito.times(1)).remove(note.id)
     }
