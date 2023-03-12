@@ -2,8 +2,10 @@ package notification.application
 
 import note.domain.NoteRepository
 import note.domain.exceptions.NonExistentNoteException
+import note.mothers.NoteMother
 import notification.domain.Notification
 import notification.domain.NotificationRepository
+import notification.domain.exceptions.NonExistentNotificationException
 import notification.mothers.NotificationMother
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -19,7 +21,8 @@ class NotificationRemoverTest {
     @BeforeEach
     fun `Set Up`() {
         notificationRepository = Mockito.mock(NotificationRepository::class.java)
-        notificationRemover = NotificationRemover(notificationRepository)
+        noteRepository = Mockito.mock(NoteRepository::class.java)
+        notificationRemover = NotificationRemover(notificationRepository, noteRepository)
     }
 
     @Test
@@ -38,6 +41,7 @@ class NotificationRemoverTest {
         val notificationPrimitives = NotificationMother.getPrimitivesFrom(notification)
         val noteId = NotificationMother.getNoteIdFrom(notification)
 
+        Mockito.`when`(noteRepository.search(noteId)).thenReturn(NoteMother.getValidNote())
         Mockito.`when`(notificationRepository.search(noteId)).thenReturn(emptyList<Notification>())
 
         assertThrows<NonExistentNotificationException> { notificationRemover.remove(notificationPrimitives) }
@@ -49,12 +53,10 @@ class NotificationRemoverTest {
         val notificationPrimitives = NotificationMother.getPrimitivesFrom(notification)
         val noteId = NotificationMother.getNoteIdFrom(notification)
 
+        Mockito.`when`(noteRepository.search(noteId)).thenReturn(NoteMother.getValidNote())
         Mockito.`when`(notificationRepository.search(noteId)).thenReturn(listOf(notification))
         notificationRemover.remove(notificationPrimitives)
 
-        Mockito.verify(notificationRepository, Mockito.times(1)).remove(
-            NotificationMother.getIdentifierFrom(notification),
-            NotificationMother.getTimeFrom(notification)
-        )
+        Mockito.verify(notificationRepository, Mockito.times(1)).remove(notification)
     }
 }

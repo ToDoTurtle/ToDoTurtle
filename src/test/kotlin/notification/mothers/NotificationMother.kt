@@ -5,7 +5,9 @@ import note.domain.Note
 import note.mothers.NoteMother
 import notification.application.NotificationPrimitives
 import notification.domain.Notification
+import shared.domain.Identifier
 import shared.mothers.IdentifierMother
+import java.sql.Time
 
 object NotificationMother {
 
@@ -33,4 +35,6 @@ object NotificationMother {
 
     fun getValidNotificationFor(note: Note) =
         Notification(noteId = NoteMother.getIdentifierFrom(note), time = TimeMother.getValidTime())
+
+    fun getTimeFrom(notification: Notification) = notification.time
 }
