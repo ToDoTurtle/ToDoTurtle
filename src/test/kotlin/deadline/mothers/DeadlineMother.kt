@@ -12,5 +12,8 @@ object DeadlineMother {
     fun getWithDifferentTime(deadline: Deadline) = deadline.copy(time = TimeMother.getDifferentTime(deadline.time))
     fun getDifferentTimeFrom(deadline: Deadline) = getWithDifferentTime(deadline).time
     fun getPrimitivesFrom(currentDeadline: Deadline) =
-        DeadlinePrimitives(currentDeadline.noteId.id, currentDeadline.time.time)
+        DeadlinePrimitives(
+            IdentifierMother.getPrimitiveFrom(currentDeadline.noteId),
+            TimeMother.getPrimitiveFrom(currentDeadline.time),
+        )
 }
