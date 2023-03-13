@@ -5,9 +5,7 @@ import note.domain.Note
 import note.mothers.NoteMother
 import notification.application.NotificationPrimitives
 import notification.domain.Notification
-import shared.domain.Identifier
 import shared.mothers.IdentifierMother
-import java.sql.Time
 
 object NotificationMother {
 
@@ -15,7 +13,7 @@ object NotificationMother {
 
     fun getValidNotification() = Notification(
         noteId = IdentifierMother.getValidIdentifier(),
-        time = TimeMother.getValidTime()
+        time = TimeMother.getValidTime(),
     )
 
     fun getValidNotifications(): Collection<Notification> {
@@ -23,14 +21,14 @@ object NotificationMother {
         val time = TimeMother.getValidTime()
         return listOf(
             Notification(noteId = noteId, time = time),
-            Notification(noteId = noteId, time = TimeMother.getDifferentTime(time))
+            Notification(noteId = noteId, time = TimeMother.getDifferentTime(time)),
         )
     }
 
     fun getNoteIdFrom(notification: Notification) = notification.noteId
     fun getPrimitivesFrom(notification: Notification) = NotificationPrimitives(
         noteId = IdentifierMother.getPrimitiveFrom(notification.noteId),
-        time = TimeMother.getPrimitiveFrom(notification.time)
+        time = TimeMother.getPrimitiveFrom(notification.time),
     )
 
     fun getValidNotificationFor(note: Note) =
