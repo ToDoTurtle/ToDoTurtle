@@ -4,6 +4,8 @@ import shared.domain.exceptions.InvalidUUIDException
 import java.util.*
 
 data class Identifier(val id: String) {
+    fun toPrimitive() = id
+
     companion object {
         const val WANTED_VERSION = 4
     }
