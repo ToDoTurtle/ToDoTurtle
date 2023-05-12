@@ -4,12 +4,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>ToDoTurtle</artifactId>
+    <artifactId>todoturtle</artifactId>
     <groupId>org.eps</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>consoleApp</name>
+    <name>ToDoTurtle</name>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub ToDoTurtle Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/ToDoTurtle/ToDoTurtle</url>
+        </repository>
+    </distributionManagement>
+
+    <scm>
+        <connection>scm:git:git://github.com/ToDoTurtle/ToDoTurtle.git</connection>
+        <developerConnection>scm:git:https://github.com/ToDoTurtle/ToDoTurtle.git
+        </developerConnection>
+        <url>https://github.com/ToDoTurtle/ToDoTurtle</url>
+        <tag>ToDoTurtle</tag>
+    </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
