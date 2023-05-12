@@ -1,1 +1,1 @@
-sourceset_dependencies='{"ToDoTurtle/JVM":[]}'
+sourceset_dependencies='{"todoturtle/JVM":[]}'
